@@ -1,0 +1,67 @@
+/* pages/home/index/index.wxss */
+.container{
+  background: #f9f9f9;
+  padding-bottom: 17rpx;
+}
+.banner_container{
+  width: 100%;
+  height: 375rpx;
+  overflow: hidden;
+}
+.swiper_img{
+  width: 100%;
+}
+.content{
+  position: relative;
+}
+.bg_line{
+  width: 414rpx;
+  height: 2rpx;
+  background: rgba(139, 87, 42, 0.4);
+  margin: 62rpx auto 40rpx;
+}
+.content_title{
+  width: 238rpx;
+  font-size: 34rpx;
+  color: #8b572a;
+  text-align: center;
+  padding: 0 8rpx;
+  background: #f9f9f9;
+  position: absolute;
+  left: 50%;
+  top: 36rpx;
+  transform: translate(-50%);
+
+}
+.content_img_container{
+  padding: 0 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.con_img_dan{
+  padding: 0 10rpx;
+  margin-bottom: 20rpx;
+  width: 345rpx;
+  height: 345rpx;
+  overflow: hidden;
+}
+.con_img{
+  width: 100%;
+}
+.kefu_rexian_dizhi{
+  position:fixed;
+  top: 475rpx;
+  right: 0;
+  width: 88rpx;
+}
+.btn{
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.41);
+  margin-bottom: 20rpx;
+}
+.btn_img{
+  width: 36rpx;
+  height: 36rpx;
+}
