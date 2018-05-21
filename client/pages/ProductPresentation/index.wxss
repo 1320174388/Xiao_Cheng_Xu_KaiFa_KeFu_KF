@@ -1,0 +1,124 @@
+.page{
+  background-color: #ffffff;
+}
+.content-column{
+  display: flex;  
+  flex-direction: column;  
+}
+.content-row{  
+  display: flex;  
+  flex-direction: row;  
+}
+/* 介绍标题 */
+.context-title{
+  font-family: PingFangSC;
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #8b572a;
+  line-height: 67rpx;
+  margin-top: 30rpx;
+  text-align: center;
+}
+/* 楠枫美林木门图片介绍 */
+.context-imgtitle{
+  margin-top: 20rpx;
+}
+/* 左侧图片介绍 */
+.context-leftimg{
+  margin-left: 25rpx;
+}
+/* 右侧图片介绍 */
+.context-rightimg{
+  margin-right: 10rpx;
+}
+/* 图片规格 */
+.WechatIMG39{
+  width: 340rpx;
+  height: 765rpx;
+}
+/* 楠枫美林水漆木门文字介绍 */
+.context-present{
+  width: 691rpx;
+  height: 800rpx;
+  font-family: PingFangSC;
+  font-size: 34rpx;
+  line-height: 1.47;
+  color: #333333;
+  margin-left: 30rpx;
+  margin-top: 18rpx;
+}
+/* 段落 */
+.present{
+  text-indent: 2em;
+}
+/* 楠枫美林水性漆木门标题 */
+.six-present{
+  width: 580rpx;
+  height: 26rpx;
+  font-family: PingFangSC;
+  font-size: 40rpx;
+  font-weight: 600;
+  line-height: 0.65;
+  color: #333333;
+  margin-top:60rpx;
+  text-indent:0.3em;
+}
+/* 左侧填充现场图片 */
+.context-leftfillimg{
+  margin-left: 25rpx;
+}
+/* 右侧填充现场图片 */
+.context-rightfillimg{
+  margin-right: 10rpx;
+}
+/* 填充现场图片规格 */
+.WechatIMG30 {
+  width: 340rpx;
+  height: 453rpx;
+}
+/* 关于水性漆木门了解更多： */
+.context-about{
+  width: 480rpx;
+  height: 42rpx;
+  font-family: PingFangSC;
+  font-size: 40rpx;
+  font-weight: 600;
+  line-height: 1.05;
+  color: #333333;
+  margin-left: 39rpx;
+  margin-top: 20rpx;
+}
+/* 网址 */
+.mpweixinqq {
+  width: 671rpx;
+  height: 96rpx;
+  font-family: PingFangSC;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #4a90e2;
+  margin-top: 20rpx;
+  margin-left: 39rpx;
+}
+/* 楠枫美林原木门介绍  */
+.context-lasttitle{
+  width: 720rpx;
+  height: 67rpx;
+  font-family: PingFangSC;
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #8b572a;
+  margin-top: 50rpx;
+  text-align: center;
+}
+/* 楠枫美林原木门详细介绍  */
+.context-detailed{
+  width: 691rpx;
+  height: 311rpx;
+  font-family: PingFangSC;
+  font-size: 34rpx;
+  line-height: 1.47;
+  color: #333333;
+  text-indent: 2em;
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+}
