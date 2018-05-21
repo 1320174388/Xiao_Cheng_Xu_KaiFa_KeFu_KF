@@ -1,0 +1,10 @@
+{
+	"miniprogramRoot": "./client",
+	"qcloudRoot": "./server",
+	"setting": {
+		"newFeature": true
+	},
+	"appid": "wxccc5a444059f1b68",
+	"projectname": "Xiao_chang_Xu_KaiFa_KeFu_KF",
+	"condition": {}
+}
