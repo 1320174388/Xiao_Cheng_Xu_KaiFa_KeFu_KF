@@ -5,37 +5,43 @@ Page({
    * 页面的初始数据
    */
   data: {
+    swiper_banner:[
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner2.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner3.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner4.jpg"
+    ],
       shuiQi:[
-        "../images/images-index/s1.jpg",
-        "../images/images-index/s2.jpg",
-        "../images/images-index/s3.jpg",
-        "../images/images-index/s4.jpg",
-        "../images/images-index/s5.jpg",
-        "../images/images-index/s6.jpg",
-        "../images/images-index/s7.jpg",
-        "../images/images-index/s8.jpg",
-        "../images/images-index/s9.jpg",
-        "../images/images-index/s10.jpg",
-        "../images/images-index/s11.jpg",
-        "../images/images-index/s12.jpg",
-        "../images/images-index/s13.jpg",
-        "../images/images-index/s14.jpg",
-        "../images/images-index/s15.jpg",
-        "../images/images-index/s16.jpg",
-        "../images/images-index/s17.jpg",
-        "../images/images-index/s18.jpg"
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s1.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s2.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s3.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s4.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s5.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s6.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s7.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s8.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s9.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s10.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s11.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s12.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s13.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s14.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s15.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s16.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s17.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s18.jpg"
       ],
       "yuanMu":[
-        "../images/images-index/y1.jpg",
-        "../images/images-index/y2.jpg",
-        "../images/images-index/y3.jpg",
-        "../images/images-index/y4.jpg",
-        "../images/images-index/y5.jpg",
-        "../images/images-index/y6.jpg",
-        "../images/images-index/y7.jpg",
-        "../images/images-index/y8.jpg",
-        "../images/images-index/y9.jpg",
-        "../images/images-index/y10.jpg"
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y1.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y2.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y3.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y4.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y5.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y6.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y7.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y8.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y9.jpg",
+        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y10.jpg"
       ]
   },
 
@@ -93,5 +99,20 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  phone:function(){
+    wx.makePhoneCall({
+      phoneNumber: '01087633035'
+    })
+  },
+  address:function(){
+    wx.openLocation({
+      latitude: 39.834625,
+      longitude: 116.450551,
+      name: '楠枫美林木业工厂店',
+      success: function (res) {
+        console.log(res);
+      }
+    });
   }
 })

@@ -1,12 +1,17 @@
 <!--pages/home/index/index.wxml-->
 <!--container容器  -->
 <view class='container'>
-    <!--banner图容器  -->
+    <!--轮播图容器  -->
     <view class='banner_container'>
-        <!--banner图图片  -->
-        <image src='../images/images-index/index_banner.jpg' class='banner_img'></image>
+        <!--轮播图  -->
+        <swiper style='height:375rpx;' autoplay='true' interval='3000' circular='true'>
+            <swiper-item wx:for="{{swiper_banner}}" wx:key="index">
+                <!--图片  -->
+                <image src='{{item}}' class='swiper_img'></image>
+            </swiper-item>
+        </swiper>
     </view>
-    <!--正文内容容器  -->
+    <!--水漆木门正文内容容器  -->
     <view class='content'>
         <!--正文内容小标题背景线  -->
         <view class='bg_line'></view>
@@ -21,7 +26,7 @@
         </view>
         
     </view>
-    <!--正文内容容器  -->
+    <!--原木木门正文内容容器  -->
     <view class='content'>
         <!--正文内容小标题背景线  -->
         <view class='bg_line'></view>
@@ -36,6 +41,20 @@
         </view>
         
     </view>
-
+    <!--客服热线地址  -->
+    <view class='kefu_rexian_dizhi'>
+    <!--客服  -->
+        <button open-type='contact' class='btn'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/kefu_icon.png' class='btn_img'></image>
+        </button>
+        <!--热线  -->
+        <button class='btn' bindtap='phone'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/phone_icon.png' class='btn_img'></image>
+        </button>
+        <!--地址  -->
+        <button class='btn' bindtap='address'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/dizhi_icon.png' class='btn_img'></image>
+        </button>
+    </view>
 
 </view>

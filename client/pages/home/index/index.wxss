@@ -8,7 +8,7 @@
   height: 375rpx;
   overflow: hidden;
 }
-.banner_img{
+.swiper_img{
   width: 100%;
 }
 .content{
@@ -44,12 +44,24 @@
   width: 345rpx;
   height: 345rpx;
   overflow: hidden;
-  position: relative;
 }
 .con_img{
-  height: 100%;
-  transform: rotate(90deg);
-  position: absolute;
-  left: -38%;
-  top: 0;
+  width: 100%;
+}
+.kefu_rexian_dizhi{
+  position:fixed;
+  top: 475rpx;
+  right: 0;
+  width: 88rpx;
+}
+.btn{
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.41);
+  margin-bottom: 20rpx;
+}
+.btn_img{
+  width: 36rpx;
+  height: 36rpx;
 }
