@@ -1,25 +1,17 @@
-// pages/cheshi/cheshi.js
+// pages/ProductPresentation/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.openLocation({
-      latitude: 39.834625,
-      longitude: 116.450551,
-      name:'楠枫美林木业工厂店',
-      success: function (res){
-        console.log(res);
-      }
-    });
+  
   },
 
   /**
