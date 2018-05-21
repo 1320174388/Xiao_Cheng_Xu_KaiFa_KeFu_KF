@@ -1,0 +1,41 @@
+<!--pages/home/index/index.wxml-->
+<!--container容器  -->
+<view class='container'>
+    <!--banner图容器  -->
+    <view class='banner_container'>
+        <!--banner图图片  -->
+        <image src='../images/images-index/index_banner.jpg' class='banner_img'></image>
+    </view>
+    <!--正文内容容器  -->
+    <view class='content'>
+        <!--正文内容小标题背景线  -->
+        <view class='bg_line'></view>
+        <!--正文内容小标题  -->
+        <view class='content_title'>水漆木门系列</view>
+        <!--正文内容的图片容器  -->
+        <view class='content_img_container'>
+            <!--正文内容图片单个容器  -->
+            <view class='con_img_dan' wx:for="{{shuiQi}}" wx:key="index">
+                <image src='{{item}}' class='con_img'></image>
+            </view>
+        </view>
+        
+    </view>
+    <!--正文内容容器  -->
+    <view class='content'>
+        <!--正文内容小标题背景线  -->
+        <view class='bg_line'></view>
+        <!--正文内容小标题  -->
+        <view class='content_title'>原木门系列</view>
+        <!--正文内容的图片容器  -->
+        <view class='content_img_container'>
+            <!--正文内容图片单个容器  -->
+            <view class='con_img_dan' wx:for="{{yuanMu}}" wx:key="index">
+                <image src='{{item}}' class='con_img'></image>
+            </view>
+        </view>
+        
+    </view>
+
+
+</view>
