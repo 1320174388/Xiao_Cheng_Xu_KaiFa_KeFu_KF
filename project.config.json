@@ -6,5 +6,31 @@
 	},
 	"appid": "wxccc5a444059f1b68",
 	"projectname": "Xiao_chang_Xu_KaiFa_KeFu_KF",
-	"condition": {}
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "12",
+					"pathName": "pages/about/about"
+				}
+			]
+		}
+	}
 }
