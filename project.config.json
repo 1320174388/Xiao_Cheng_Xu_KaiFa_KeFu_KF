@@ -23,10 +23,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
-			"list": [
-				{}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }
