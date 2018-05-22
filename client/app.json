@@ -1,6 +1,8 @@
 {
   "pages":[
-    "pages/home/index/index"
+    "pages/home/index/index",
+    "pages/ProductPresentation/index",
+    "pages/about/about"
   ],
   "window":{
     "backgroundColor":"#F6F6F6",
@@ -8,5 +10,29 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "Wafer Quick Start",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "selectedColor": "#8b572a",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/ProductPresentation/index",
+        "text": "首页",
+        "iconPath": "icon/selectHome.png",
+        "selectedIconPath": "icon/Home.png"
+      },
+      {
+        "pagePath": "pages/ProductPresentation/index",
+        "text": "产品介绍",
+        "iconPath": "icon/Manage.png",
+        "selectedIconPath": "icon/selectManage.png"
+      },
+      {
+        "pagePath": "pages/ProductPresentation/index",
+        "text": "关于我们",
+        "iconPath": "icon/My.png",
+        "selectedIconPath": "icon/selectMy.png"
+      }
+    ]
   }
 }

@@ -1,0 +1,80 @@
+<!--pages/about/about.wxml-->
+<view class='b1'>
+  <text class='color'> 关于楠枫美林</text>
+
+</view>
+<view class='b2'>
+  <text>　　北京楠枫美林是一家集研发、设计、生
+产、销售、售后服务为一体的综合性木业企
+业。通过多年发展,积累了雄厚实力。\n
+　　我们公司主要生产中高档实木复合门。作
+为高起点的木业企业,公司拥有设计理念超前
+的设计师队伍,技术过硬的员工队伍,从国外
+引进现代化生产线。公司完全按照现代企业先
+进的管理体系进行管理,公司拥有优秀的营销
+团队,溶蚀,组建了一支高水平的安装队伍
+为顾客提供完善的营销、设计、测量、安装及
+售后等各项服务。\n
+　　楠枫美林木门以国际化的视野和专业领先
+的精神,将国外先进的木门文化带入中国,在
+国内掀起了一场木门革命。
+经过多年的市场运作,在木门行业已居北京市
+场前列位置。\n
+　　对人深切关怀,对工业造型审美的不懈追
+求,对科技的不断发展,使楠枫美林木门产品
+的每一个细节都散发着人性的温暖和床在的灵
+感。公司秉承“诚信、务实、敬业、这奉献”
+的企业理念,将以我们的智慧和汗水为广大客户
+提供优质的产品和人性化的服务,为您的家庭生
+活和事业打造幸福之门!成功之门!凯旋之门！\n
+　　面对新世纪带来的机遇和入世带来的扒
+战,我们将以强大的生产能力,上乘的产品质
+量,高效的营销网络,驰名的品牌形象,努力
+成为中国家居制造流通业著名品牌。
+</text>
+</view>
+
+
+<view class='a'>
+  <view class='b3'>
+    <text class='yangshi'>公司门店地址</text>
+  </view>
+  <view class='b4'>
+    <text>诚外诚建材城</text>
+  </view>
+
+
+  <view class='b3'>
+    <text>联系人</text>
+  </view>
+  <view class='b4'>
+    <text>王延东</text>
+  </view>
+
+  <view class='b3'>
+    <text>手机号</text>
+  </view>
+  <view class='b4'>
+    <text>1234567890</text>
+  </view>
+  <view class='b3'>
+    <text>微信</text>
+  </view>
+
+
+  <view class='b6'>
+
+    <view class='b5'>
+
+
+      <image class='b5' src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/764844130884085437.jpg'      bindlongpress='blp' ></image>
+
+     
+    </view>
+
+    <view class='b4'>
+      <text>长按添加好友</text>
+    </view>
+
+  </view>
+</view>

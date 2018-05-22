@@ -1,0 +1,100 @@
+<view class='page'>
+  <view class="content-column">
+    <!-- 介绍标题 -->
+    <view style="flex:1" class='context-title'>
+      楠枫美林水漆木门介绍
+    </view>
+     <!-- 楠枫美林木门图片介绍 -->
+    <view style="flex:1" class='context-imgtitle'>
+      <view class="content-row">
+        <!-- 左侧图片介绍 -->
+        <view style="flex:1" class='context-leftimg'>
+          <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG38.jpeg' class='WechatIMG39'></image>
+        </view>
+        <!-- 右侧图片介绍 -->
+        <view style="flex:1" class='context-rightimg'>
+          <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG39.jpeg' class='WechatIMG39'></image>
+        </view> 
+      </view>
+    </view>
+    <!-- 楠枫美林水漆木门文字介绍 -->
+    <view style="flex:1" class='context-present'>
+      <view class="content-column">
+        <!-- 第一段 -->
+        <view style="flex:1" class='present'>
+          楠枫美林，水性漆木门，无有机溶剂，不含重金属，不含苯，不含甲醛，不挥发不黄变，无刺激性气味。
+        套板套线均为实木不含密度板！门内填充奥松实木！真正的好木门！
+        </view>
+        <!-- 第二段 -->
+        <view style="flex:1" class='present'>
+          甲醛的沸点是18度，在房子里要陪伴我们15年，炎热的夏季，室内的甲醛含量将增长5-6倍以上，对孩子和老人，
+        哮喘患者和免疫力低下朋友造成很大危害！尤其是新装修的房子，据统计，90%白血病患儿家中，半年内都有装修史，
+        而房屋装修污染一般要释放10～15年。
+        </view> 
+        <!-- 第三段 -->
+        <view style="flex:1">
+          ——无知的爱，是对家人最大的伤害！
+        </view>
+        <!-- 第四段 -->
+        <view style="flex:1">
+          ——没有环保！再奢华的装修也是廉价！
+        </view>
+        <!-- 第五段 -->
+        <view style="flex:1" class='present'>
+            为了家人健康请选用水性漆木门！
+        </view>
+        <!-- 楠枫美林水性漆木门标题 -->
+        <view style="flex:1" class='six-present'>
+            楠枫美林水性漆木门填充现场：
+        </view>
+      </view> 
+    </view>
+    <!-- 楠枫美林水性漆木门填充现场图片 -->
+    <view class="content-column">
+      <!-- 第一层图片 -->
+      <view style="flex:1">
+        <view class="content-row">
+          <!-- 左侧填充现场图片 -->
+          <view style="flex:1" class='context-leftfillimg'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG30.jpeg' class='WechatIMG30'></image>
+          </view>
+           <!-- 右侧填充现场图片 -->
+          <view style="flex:1" class='context-rightfillimg'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG34.jpeg' class='WechatIMG30'></image>
+          </view> 
+        </view>
+      </view> 
+      <!-- 第二层图片 -->
+      <view style="flex:1">
+        <view class="content-row">
+          <!-- 左侧填充现场图片 -->
+          <view style="flex:1" class='context-leftfillimg'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG32.jpeg' class='WechatIMG30'></image>
+          </view>
+          <!-- 右侧填充现场图片 -->
+          <view style="flex:1" class='context-rightfillimg'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG31.jpeg' class='WechatIMG30'></image>
+          </view> 
+        </view>
+      </view>
+    </view>
+    <!-- 关于水性漆木门了解更多： -->
+    <view style="flex:1" class='context-about'>
+      关于水性漆木门了解更多：
+    </view>
+    <!-- 网址 -->
+    <view style="flex:1" class='mpweixinqq'>
+      https://mp.weixin.qq.com/s/jV7qFtajkm\n6llfbSdBUX0A
+    </view> 
+    <!-- 楠枫美林原木门介绍标题 -->
+    <view style="flex:1" class='context-lasttitle'>
+      楠枫美林原木门介绍
+    </view>
+    <!-- 楠枫美林原木门详细介绍 -->
+    <view style="flex:1" class='context-detailed'>
+      楠枫美林木门，原木门系列，材质有北美红橡木，海棠木，欧古曼，红樱桃，巴西花梨，
+    本公司原木承接整屋订制，工艺均为榫卯结构，门厚4.5公分，套板2.2公分，套线厚度2.5
+    公分真材实料！
+    </view>
+  </view>
+</view>
