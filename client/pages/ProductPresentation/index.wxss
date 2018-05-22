@@ -52,7 +52,7 @@
 }
 /* 楠枫美林水性漆木门标题 */
 .six-present{
-  width: 580rpx;
+  width: 680rpx;
   height: 26rpx;
   font-family: PingFangSC;
   font-size: 40rpx;
@@ -60,7 +60,7 @@
   line-height: 0.65;
   color: #333333;
   margin-top:50rpx;
-  text-indent:0.3em;
+  text-indent:0.7em;
   margin-bottom:20rpx;
 }
 /* 左侧填充现场图片 */
