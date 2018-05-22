@@ -9,11 +9,11 @@
       <view class="content-row">
         <!-- 左侧图片介绍 -->
         <view style="flex:1" class='context-leftimg'>
-          <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG38.jpeg' class='WechatIMG39'></image>
+          <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG38.jpeg' class='WechatIMG39' bindtap='blp' id='0'></image>
         </view>
         <!-- 右侧图片介绍 -->
         <view style="flex:1" class='context-rightimg'>
-          <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG39.jpeg' class='WechatIMG39'></image>
+          <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG39.jpeg' class='WechatIMG39' bindtap='blp' id='1'></image>
         </view> 
       </view>
     </view>
@@ -56,11 +56,11 @@
         <view class="content-row context-fillimg">
           <!-- 左侧填充现场图片 -->
           <view style="flex:1" class='context-leftfillimg'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG30.jpeg' class='WechatIMG30'></image>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG30.jpeg' class='WechatIMG30' bindtap='blp' id='2'></image>
           </view>
            <!-- 右侧填充现场图片 -->
           <view style="flex:1" class='context-rightfillimg'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG34.jpeg' class='WechatIMG30'></image>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG34.jpeg' class='WechatIMG30' bindtap='blp' id='3'></image>
           </view> 
         </view>
       </view> 
@@ -69,11 +69,11 @@
         <view class="content-row">
           <!-- 左侧填充现场图片 -->
           <view style="flex:1" class='context-leftfillimg'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG32.jpeg' class='WechatIMG30'></image>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG32.jpeg' class='WechatIMG30' bindtap='blp' id='4'></image>
           </view>
           <!-- 右侧填充现场图片 -->
           <view style="flex:1" class='context-rightfillimg'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG31.jpeg' class='WechatIMG30'></image>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG31.jpeg' class='WechatIMG30' bindtap='blp' id="5"></image>
           </view> 
         </view>
       </view>
@@ -83,9 +83,10 @@
       关于水性漆木门了解更多：
     </view>
     <!-- 网址 -->
-    <view style="flex:1" class='mpweixinqq'>
-      https://mp.weixin.qq.com/s/jV7qFtajkm\n6llfbSdBUX0A
+    <view style="flex:1" class='mpweixinqq' bindtap='web_jump'>
+        https://mp.weixin.qq.com/s/jV7qFtajkm\n6llfbSdBUX0A
     </view> 
+    
     <!-- 楠枫美林原木门介绍标题 -->
     <view style="flex:1" class='context-lasttitle'>
       楠枫美林原木门介绍

@@ -5,6 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    picture:[
+      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG38.jpeg',
+      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG39.jpeg',
+      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG30.jpeg',
+      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG34.jpeg',
+      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG32.jpeg',
+      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG31.jpeg'
+    ]
   },
 
   /**
@@ -61,5 +69,20 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  blp:function(res){
+    var idn = res.currentTarget.id;
+    var img_url_arr = this.data.picture;
+    var img_yulan = this.data.picture[idn];
+
+    wx.previewImage({
+      current: img_yulan,
+      urls: img_url_arr
+    })
+  },
+  web_jump:function(){
+    wx.navigateTo({
+      url: './webView/webView'
+    })
   }
 })

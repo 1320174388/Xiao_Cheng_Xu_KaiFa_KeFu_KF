@@ -117,21 +117,23 @@ Page({
   },
   blp: function (res) {
     var idn = res.currentTarget.id;
+    var img_url_arr = this.data.shuiQi;
     var img_yulan = this.data.shuiQi[idn];
     
     wx.previewImage({
-
-      urls: [img_yulan]
+      current: img_yulan,
+      urls: img_url_arr
     })
 
   },
   blp2: function (res) {
     var idn = res.currentTarget.id;
+    var img_url_arr = this.data.yuanMu;
     var img_yulan = this.data.yuanMu[idn];
 
     wx.previewImage({
-
-      urls: [img_yulan]
+      current: img_yulan,
+      urls: img_url_arr
     })
 
   }

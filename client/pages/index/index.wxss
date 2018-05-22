@@ -39,7 +39,7 @@
   flex-wrap: wrap;
 }
 .con_img_dan{
-  padding: 0 12rpx;
+  padding: 0 11rpx;
   margin-bottom: 20rpx;
   width: 345rpx;
   height: 345rpx;
