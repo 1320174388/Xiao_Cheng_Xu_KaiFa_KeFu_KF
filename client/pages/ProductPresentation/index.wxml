@@ -43,17 +43,17 @@
         <view style="flex:1" class='present'>
             为了家人健康请选用水性漆木门！
         </view>
-        <!-- 楠枫美林水性漆木门标题 -->
-        <view style="flex:1" class='six-present'>
-            楠枫美林水性漆木门填充现场：
-        </view>
       </view> 
     </view>
     <!-- 楠枫美林水性漆木门填充现场图片 -->
     <view class="content-column">
+      <!-- 楠枫美林水性漆木门标题 -->
+      <view style="flex:1" class='six-present'>
+        楠枫美林水性漆木门填充现场：
+      </view>
       <!-- 第一层图片 -->
-      <view style="flex:1">
-        <view class="content-row">
+      <view style="flex:1;">
+        <view class="content-row context-fillimg">
           <!-- 左侧填充现场图片 -->
           <view style="flex:1" class='context-leftfillimg'>
             <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG30.jpeg' class='WechatIMG30'></image>

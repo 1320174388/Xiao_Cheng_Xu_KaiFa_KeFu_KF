@@ -39,10 +39,9 @@
 /* 楠枫美林水漆木门文字介绍 */
 .context-present{
   width: 691rpx;
-  height: 800rpx;
   font-family: PingFangSC;
   font-size: 34rpx;
-  line-height: 1.47;
+  line-height: 1.5;
   color: #333333;
   margin-left: 30rpx;
   margin-top: 18rpx;
@@ -60,8 +59,9 @@
   font-weight: 600;
   line-height: 0.65;
   color: #333333;
-  margin-top:60rpx;
+  margin-top:50rpx;
   text-indent:0.3em;
+  margin-bottom:20rpx;
 }
 /* 左侧填充现场图片 */
 .context-leftfillimg{
@@ -78,7 +78,7 @@
 }
 /* 关于水性漆木门了解更多： */
 .context-about{
-  width: 480rpx;
+  width: 600rpx;
   height: 42rpx;
   font-family: PingFangSC;
   font-size: 40rpx;
