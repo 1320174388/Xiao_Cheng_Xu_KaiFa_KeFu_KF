@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/home/index/index",
+    "pages/index/index",
     "pages/ProductPresentation/index",
     "pages/about/about"
   ],
@@ -16,7 +16,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/ProductPresentation/index",
+        "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "icon/selectHome.png",
         "selectedIconPath": "icon/Home.png"
@@ -28,7 +28,7 @@
         "selectedIconPath": "icon/selectManage.png"
       },
       {
-        "pagePath": "pages/ProductPresentation/index",
+        "pagePath": "pages/about/about",
         "text": "关于我们",
         "iconPath": "icon/My.png",
         "selectedIconPath": "icon/selectMy.png"
