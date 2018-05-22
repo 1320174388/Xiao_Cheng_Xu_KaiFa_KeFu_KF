@@ -70,6 +70,21 @@ Page({
   onShareAppMessage: function () {
   
   },
+  phone: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01087633035'
+    })
+  },
+  address: function () {
+    wx.openLocation({
+      latitude: 39.834625,
+      longitude: 116.450551,
+      name: '楠枫美林木业工厂店',
+      success: function (res) {
+        console.log(res);
+      }
+    });
+  },
   blp:function(res){
     var idn = res.currentTarget.id;
     var img_url_arr = this.data.picture;

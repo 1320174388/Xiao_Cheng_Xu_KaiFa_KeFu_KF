@@ -138,9 +138,9 @@
   position: relative;
 }
 .btn_img{
-  width: 36rpx;
-  height: 36rpx;
+  width: 45rpx;
+  height: 45rpx;
   position: absolute;
-  left: 33%;
-  top: 31%;
+  left: 27%;
+  top: 25%;
 }
