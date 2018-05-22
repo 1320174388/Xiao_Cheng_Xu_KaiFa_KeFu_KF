@@ -114,5 +114,25 @@ Page({
         console.log(res);
       }
     });
+  },
+  blp: function (res) {
+    var idn = res.currentTarget.id;
+    var img_yulan = this.data.shuiQi[idn];
+    
+    wx.previewImage({
+
+      urls: [img_yulan]
+    })
+
+  },
+  blp2: function (res) {
+    var idn = res.currentTarget.id;
+    var img_yulan = this.data.yuanMu[idn];
+
+    wx.previewImage({
+
+      urls: [img_yulan]
+    })
+
   }
 })

@@ -55,4 +55,19 @@
     </view>
 
   </view>
+      <!--客服热线地址  -->
+    <view class='kefu_rexian_dizhi'>
+    <!--客服  -->
+        <button open-type='contact' class='btn'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/kefu_icon.png' class='btn_img'></image>
+        </button>
+        <!--热线  -->
+        <button class='btn' bindtap='phone'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/phone_icon.png' class='btn_img'></image>
+        </button>
+        <!--地址  -->
+        <button class='btn' bindtap='address'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/dizhi_icon.png' class='btn_img'></image>
+        </button>
+    </view>
 </view>

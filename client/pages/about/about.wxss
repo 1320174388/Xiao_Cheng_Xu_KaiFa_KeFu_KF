@@ -61,3 +61,25 @@
   margin: 10px auto;
   margin-bottom: 20px;
 }
+.kefu_rexian_dizhi{
+  position:fixed;
+  top: 475rpx;
+  right: 0;
+  width: 88rpx;
+}
+.btn{
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.41);
+  margin-bottom: 20rpx;
+  padding-top: 3rpx;
+  position: relative;
+}
+.btn_img{
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  left: 33%;
+  top: 31%;
+}

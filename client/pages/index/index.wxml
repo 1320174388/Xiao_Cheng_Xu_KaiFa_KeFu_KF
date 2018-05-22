@@ -21,7 +21,7 @@
         <view class='content_img_container'>
             <!--正文内容图片单个容器  -->
             <view class='con_img_dan' wx:for="{{shuiQi}}" wx:key="index">
-                <image src='{{item}}' class='con_img'></image>
+                <image id='{{index}}' src='{{item}}' class='con_img' bindtap='blp'></image>
             </view>
         </view>
         
@@ -36,7 +36,7 @@
         <view class='content_img_container'>
             <!--正文内容图片单个容器  -->
             <view class='con_img_dan' wx:for="{{yuanMu}}" wx:key="index">
-                <image src='{{item}}' class='con_img'></image>
+                <image id='{{index}}' src='{{item}}' class='con_img' bindtap='blp2'></image>
             </view>
         </view>
         
