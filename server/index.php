@@ -325,4 +325,5 @@ require_once './install_qcloud_sdk.php';
  *
  * And away we go...
  */
+error_reporting(E_ALL ^ E_NOTICE);
 require_once BASEPATH.'core/CodeIgniter.php';

@@ -12,14 +12,31 @@ Page({
       'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG34.jpeg',
       'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG32.jpeg',
       'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG31.jpeg'
-    ]
+    ],
+    onload_hidden: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var This = this;
+    setInterval(function (res) {
+      // 查看是否授权
+      wx.getSetting({
+        success: function (res) {
+          if (res.authSetting['scope.userInfo']) {
+            This.setData({
+              onload_hidden: true
+            });
+          } else {
+            This.setData({
+              onload_hidden: false
+            });
+          }
+        }
+      })
+    }, 1000);
   },
 
   /**
