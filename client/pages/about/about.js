@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    onload_hidden: true
+    onload_hidden: true,
+    IsAdmin_hidden: true,
+    NoAdmin_hidden: true,
   },
 
   /**
@@ -13,6 +15,31 @@ Page({
    */
   onLoad: function (options) {
     var This = this;
+    // 查看是否授权
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          This.setData({
+            onload_hidden: true
+          });
+          if (wx.getStorageSync('IsAdmin')) {
+            This.setData({
+              IsAdmin_hidden: false,
+              NoAdmin_hidden: true,
+            });
+          } else {
+            This.setData({
+              IsAdmin_hidden: true,
+              NoAdmin_hidden: false,
+            });
+          }
+        } else {
+          This.setData({
+            onload_hidden: false
+          });
+        }
+      }
+    });
     setInterval(function (res) {
       // 查看是否授权
       wx.getSetting({
@@ -21,6 +48,17 @@ Page({
             This.setData({
               onload_hidden: true
             });
+            if (wx.getStorageSync('IsAdmin')) {
+              This.setData({
+                IsAdmin_hidden: false,
+                NoAdmin_hidden: true,
+              });
+            } else {
+              This.setData({
+                IsAdmin_hidden: true,
+                NoAdmin_hidden: false,
+              });
+            }
           } else {
             This.setData({
               onload_hidden: false
@@ -28,7 +66,7 @@ Page({
           }
         }
       })
-    }, 1000);
+    }, 500);
   },
 
   /**

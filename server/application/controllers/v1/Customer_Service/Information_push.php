@@ -51,40 +51,33 @@ class Information_push extends CI_Controller
         if (!empty($postStr)){
 
             $postObj = $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            $this->file_put_obj_data($postObj);
 
             $openId = $postObj->FromUserName;
 
-            $openId_info =  $this->user->get_user_openid($openId);
-
-            if($openId_info){
-                $ToUserName = $openId_info->user_name;
+            if($this->user->get_user_openid($openId)){
+                $ToUserName = $this->user->get_user_openid($openId)->user_name;
             }else{
                 $ToUserName = '未授权用户';
             }
 
-            if($this->cache->file->get('wx_userInfo')[$openId]){
-                $user_number = $this->cache->file->get('wx:userInfo')[$openId];
-                $this->cache->file->save('wx_userInfo',[
-                    $openId => $user_number,
-                    '@'.$user_number => $openId,
-                ],172800);
+            if($this->cache->file->get($openId)){
+                $user_number = $this->cache->file->get($openId);
+                $this->cache->file->save($openId,$user_number,172800);
             }else{
                 $user_number = $this->add_user_number();
-                $this->cache->file->save('wx_userInfo',[
-                    $openId => $user_number,
-                    '@'.$user_number => $openId,
-                ],172800);
+                $this->cache->file->save($openId,$user_number,172800);
             }
 
             if( ($postObj->MsgType=="text") && (!empty(trim($postObj->Content))) )
             {
-                $res = $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,$postObj->MsgType,$postObj->Content);
-                $this->file_put_text_data($res);
+                $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,$postObj->MsgType,$postObj->Content);
             }
 
             if( ($postObj->MsgType=="image") && (!empty($postObj->MediaId)) )
             {
                 $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,"text","【图片】");
+                $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,"image_url",$postObj->PicUrl);
                 $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,$postObj->MsgType,$postObj->MediaId);
             }
 
@@ -161,6 +154,19 @@ class Information_push extends CI_Controller
             ];
 
             $post_data = json_encode($post_data);
+        }
+
+        if($MsgType=="image_url")
+        {
+            $post_data = [
+                "touser"  => "{$openId}",
+                "msgtype" => "text",
+                "text"    => [
+                    "content" => urlencode("{$Content}")
+                ]
+            ];
+
+            $post_data = urldecode(json_encode($post_data));
         }
 
         $access_token = $this->access_token();

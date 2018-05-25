@@ -100,8 +100,11 @@
   </view>
       <!--客服热线地址  -->
     <view class='kefu_rexian_dizhi'>
-    <!--客服  -->
-        <button open-type='contact' class='btn'>
+    <!--客服  --> 
+        <button hidden='{{NoAdmin_hidden}}' open-type='contact' class='btn'>
+            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/kefu_icon.png' class='btn_img'></image>
+        </button>
+        <button hidden='{{IsAdmin_hidden}}'  class='btn'>
             <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/kefu_icon.png' class='btn_img'></image>
         </button>
         <!--授权  --> 

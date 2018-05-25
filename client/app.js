@@ -53,6 +53,21 @@ function login_add(number = 1) {
                         if (res.data.errNum == 0) {
                           console.log(res.data);
                           wx.setStorageSync('token', res.data.retData.token);
+                          wx.request({
+                            url: config.service.IsAdmin,
+                            data: {
+                              'token': wx.getStorageSync('token')
+                            },
+                            header: {
+                              'content-type': 'application/x-www-form-urlencoded'
+                            },
+                            method: 'post',
+                            success: function (res) {
+                              if (res.data.errNum == 0) {
+                                wx.setStorageSync('IsAdmin', res.data.retMsg);
+                              }
+                            }
+                          });
                         } else {
                           console.log(res.data);
                         }

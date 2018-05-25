@@ -9,8 +9,10 @@ var config = {
     // 下面的地址配合云端 Demo 工作
     service: {
       host,
-      // 测试登录接口,获取令牌
+      // 登录接口,获取令牌
       cheshiUrl: `${host}/api/home/Login`,
+      // 获取是不是管理员
+      IsAdmin: `${host}/api/admin/Modular/getUserIsAdmin`,
     }
 
 };
