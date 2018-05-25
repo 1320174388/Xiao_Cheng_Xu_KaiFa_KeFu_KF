@@ -45,7 +45,7 @@ Page({
       ],
       onload_hidden: true,
       IsAdmin_hidden: true,
-      NoAdmin_hidden: true,
+      NoAdmin_hidden: false,
   },
   
   /**
