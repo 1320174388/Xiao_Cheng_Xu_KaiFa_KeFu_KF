@@ -6,6 +6,27 @@ var app = getApp();
 App({
     onLaunch: function () {
         qcloud.setLoginUrl(config.service.loginUrl)
+    },
+    // wx.request() 封装函数
+    post: function (urls, datas, func) {
+      wx.request({
+        url: urls,
+        data: datas,
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        method: 'post',
+        success: func
+      });
+    },
+    // 弹框提示
+    point: function (title_info, icon_info, time = 2000) {
+      // 弹框
+      wx.showToast({
+        title: title_info,
+        icon: icon_info,
+        duration: time
+      });
     }
 })
 

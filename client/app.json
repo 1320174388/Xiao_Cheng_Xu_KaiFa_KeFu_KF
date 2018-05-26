@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/ProductPresentation/index",
     "pages/about/about",
-    "pages/ProductPresentation/webView/webView"
+    "pages/ProductPresentation/webView/webView",
+    "pages/cheshi/cheshi"
   ],
   "window":{
     "backgroundColor":"#F6F6F6",

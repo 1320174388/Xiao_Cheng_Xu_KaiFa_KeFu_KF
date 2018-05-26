@@ -7,21 +7,28 @@
  */
 class Information_push extends CI_Controller
 {
-    private $Config_Token = '32ac0e0f409a679da4af7fc26b50c960';
-    private $ToUserName = 'LampServer';
-    private $Config_AppID = 'wxccc5a444059f1b68';
-    private $Config_openId = '';
-    private $Config_EncodingAESKey = 'KuavM93OoSVLnE6Ga74AWK1Q0QBB78cTTAYK3SxjCGo';
-    private $Config_access_token = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxccc5a444059f1b68&secret=10ea8042bb37f632aee713775f77587f';
-    private $Config_PushUrl = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=';
+    private $Config_Token;
+    private $ToUserName;
+    private $Config_openId;
+    private $Config_access_token;
+    private $Config_PushUrl;
 
     public function __construct()
     {
         parent::__construct();
+
         $this->load->driver('cache');
         $this->load->model('home/user');
         $this->load->model('admin/role');
+        $this->load->model('Session_Service/Service_User');
+        $this->load->model('Session_Service/Service_Service');
+        $this->load->library('configclass');
+
+        $this->Config_Token = $this->configclass->wxServiceToken;
         $this->Config_openId =  $this->role->isSystemAdmin()->open_id;
+        $this->Config_access_token = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$this->configclass->wxAppID}&secret={$this->configclass->wxAPPSecret}";
+        $this->Config_PushUrl = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=';
+        $this->ToUserName = 'LampServer:Uesr';
     }
 
     private function valid()
@@ -32,12 +39,6 @@ class Information_push extends CI_Controller
             echo $echoStr;
             exit;
         }
-    }
-
-    private function openId($openId)
-    {
-        $this->file_put_text_data($openId);
-        exit;
     }
 
     /**
@@ -55,38 +56,30 @@ class Information_push extends CI_Controller
 
             $openId = $postObj->FromUserName;
 
-            if($this->user->get_user_openid($openId)){
-                $ToUserName = $this->user->get_user_openid($openId)->user_name;
-            }else{
-                $ToUserName = '未授权用户';
+            $Service_User = $this->Service_User->set_Service_User($openId);
+
+            if($Service_User){
+                $session_keys = $Service_User->session_keys;
             }
 
-            if($this->cache->file->get($openId)){
-                $user_number = $this->cache->file->get($openId);
-                $this->cache->file->save($openId,$user_number,172800);
-            }else{
-                $user_number = $this->add_user_number();
-                $this->cache->file->save($openId,$user_number,172800);
-            }
+            $postObj->session_diff = 1;
+
+            $this->Service_Service->set_Service_Service($session_keys,$postObj);
 
             if( ($postObj->MsgType=="text") && (!empty(trim($postObj->Content))) )
             {
-                $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,$postObj->MsgType,$postObj->Content);
+                $this->Information_pushs($this->Config_openId,$postObj->MsgType,$postObj->Content);
             }
 
             if( ($postObj->MsgType=="image") && (!empty($postObj->MediaId)) )
             {
-                $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,"text","【图片】");
-                $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,"image_url",$postObj->PicUrl);
-                $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,$postObj->MsgType,$postObj->MediaId);
+                $this->Information_pushs($this->Config_openId,$postObj->MsgType,$postObj->MediaId);
             }
 
             if( ($postObj->MsgType=="file") && (!empty($postObj->FileKey)) )
             {
-                $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,"text","【文件】");
-                $this->Information_pushs($user_number,$this->Config_openId,$ToUserName,"file","【File:{$postObj->Title},Size:{$postObj->Description}】");
+                $this->Information_pushs($this->Config_openId,"text","【File:{$postObj->Title},Size:{$postObj->Description}】");
             }
-
 
             $XmlTpl = "<xml><ToUserName><![CDATA[".$postObj->FromUserName."]]></ToUserName><FromUserName><![CDATA[".$postObj->ToUserName."]]></FromUserName><CreateTime>".time()."</CreateTime><MsgType><![CDATA[transfer_customer_service]]></MsgType></xml>";
 
@@ -99,21 +92,67 @@ class Information_push extends CI_Controller
     }
 
     /**
-     * 用户编号
+     * 发送聊天数据
      */
-    private function add_user_number()
+    public function Customer_Service_Request()
     {
-        $mt_rand = mt_rand(100,999);
-        if($this->cache->file->get($mt_rand)){
-            return $this->add_user_number();
+        if(!is_system_admin()){
+            return return_response( 1, '你没有权限进行此操作', false );
         }
-        return $mt_rand;
+
+        $session_keys = $this->input->post('session_keys');
+        $content      = $this->input->post('content');
+
+        if($content == ''){
+            return return_response( 2, '发送失败', false );
+        }
+
+        if(!$session_keys){
+            return return_response( 3, '没有发送用户标识', false );
+        }
+
+        $postObj = new postObj();
+
+        $postObj->MsgType      = 'text';
+        $postObj->CreateTime   = time();
+        $postObj->session_diff = 0;
+        $postObj->Content      = $content;
+
+        $this->Service_Service->set_Service_Service($session_keys,$postObj);
+
+        $this->Information_pushs($this->Config_openId,$postObj->MsgType,$postObj->Content);
+
+        return return_response( 0, '发送成功', true );
+    }
+
+    /**
+     * 获取历史聊天数据
+     */
+    public function Customer_Service_Response()
+    {
+        if(!is_system_admin()){
+            return return_response( 1, '你没有权限进行此操作', false );
+        }
+
+        $session_keys = $this->input->post('session_keys');
+
+        if(!$session_keys){
+            return return_response( 2, '没有发送用户标识', false );
+        }
+
+        $res = $this->Service_Service->get_History_Service($session_keys);
+
+        if($res){
+            return return_response( 0, '请求成功', $res );
+        }else{
+            return return_response( 0, '请求成功', false );
+        }
     }
 
     /**
      * 信息推送接口
      */
-    private function Information_pushs($user_number,$openId,$ToUserName,$MsgType,$Content)
+    private function Information_pushs($openId,$MsgType,$Content)
     {
         $push_url = $this->Config_PushUrl;
 
@@ -122,19 +161,6 @@ class Information_push extends CI_Controller
             $post_data = [
                 "touser"  => "{$openId}",
                 "msgtype" => "{$MsgType}",
-                "text"    => [
-                    "content" => urlencode("@{$user_number},【{$ToUserName}】发送信息: {$Content}")
-                ]
-            ];
-
-            $post_data = urldecode(json_encode($post_data));
-        }
-
-        if($MsgType=="file")
-        {
-            $post_data = [
-                "touser"  => "{$openId}",
-                "msgtype" => "text",
                 "text"    => [
                     "content" => urlencode("{$Content}")
                 ]
@@ -154,19 +180,6 @@ class Information_push extends CI_Controller
             ];
 
             $post_data = json_encode($post_data);
-        }
-
-        if($MsgType=="image_url")
-        {
-            $post_data = [
-                "touser"  => "{$openId}",
-                "msgtype" => "text",
-                "text"    => [
-                    "content" => urlencode("{$Content}")
-                ]
-            ];
-
-            $post_data = urldecode(json_encode($post_data));
         }
 
         $access_token = $this->access_token();
@@ -198,7 +211,7 @@ class Information_push extends CI_Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
 
         $output = curl_exec($ch);
-        curl_close();
+        curl_close($ch);
 
         return $output;
     }
@@ -243,3 +256,9 @@ class Information_push extends CI_Controller
         file_put_contents('./text/123.html',"<br>".$data);
     }
 }
+
+class postObj
+{
+
+}
+
