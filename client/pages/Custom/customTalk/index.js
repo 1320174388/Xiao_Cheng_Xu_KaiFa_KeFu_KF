@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    send_color:true,
+    sends_color: false,
+    talkText: false,
+    talkImg: true
   },
 
   /**
@@ -62,5 +65,22 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  /**
+   * 文本修改时获取值
+   */
+  changeTextarea:function(e){
+    console.log(e.detail.value);
+    if (e.detail.value==''){
+      this.setData({
+        send_color: true,
+        sends_color: false
+      })
+    }else{
+      this.setData({
+        send_color: false,
+        sends_color: true 
+      })
+    }
+  },
 })
