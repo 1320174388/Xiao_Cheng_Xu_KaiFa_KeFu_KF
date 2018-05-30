@@ -56,7 +56,7 @@ class Information_push extends CI_Controller
 
             $openId = $postObj->FromUserName;
 
-            $Service_User = $this->Service_User->set_Service_User($openId);
+            $Service_User = $this->Service_User->set_Service_User($openId,$postObj->Content);
 
             if($Service_User){
                 $session_keys = $Service_User->session_keys;
@@ -129,6 +129,30 @@ class Information_push extends CI_Controller
      * 获取历史聊天数据
      */
     public function Customer_Service_Response()
+    {
+        if(!is_system_admin()){
+            return return_response( 1, '你没有权限进行此操作', false );
+        }
+
+        $session_keys = $this->input->post('session_keys');
+
+        if(!$session_keys){
+            return return_response( 2, '没有发送用户标识', false );
+        }
+
+        $res = $this->Service_Service->get_History_Service($session_keys);
+
+        if($res){
+            return return_response( 0, '请求成功', $res );
+        }else{
+            return return_response( 0, '请求成功', false );
+        }
+    }
+
+    /**
+     * 获取最新聊天数据
+     */
+    public function Customer_Service_newResponse()
     {
         if(!is_system_admin()){
             return return_response( 1, '你没有权限进行此操作', false );

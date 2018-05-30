@@ -55,6 +55,11 @@ class Service_Service extends CI_Model
         return $res->result();
     }
 
+    public function get_History_newService($session_keys)
+    {
+
+    }
+
     protected function token() {
         $number = mt_rand(10000,99999);
         $date = date(time());

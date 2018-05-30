@@ -10,7 +10,7 @@ class Service_User extends CI_Model
 
     protected $tableName = 'data_session_users';
 
-    public function set_Service_User($openid)
+    public function set_Service_User($openid,$Content)
     {
         $user = $this->db->get_where($this->tableName,['session_id'=>$openid]);
         if(!$user->result()){
@@ -18,7 +18,8 @@ class Service_User extends CI_Model
                 'session_id'     => $openid,
                 'session_keys'   => $this->token(),
                 'session_status' => 0,
-                'session_sort'   => 1
+                'session_sort'   => 1,
+                'session_newcont'=> $Content
             ]);
             if($res){
                 $user = $this->db->get_where($this->tableName,['session_id'=>$openid]);
