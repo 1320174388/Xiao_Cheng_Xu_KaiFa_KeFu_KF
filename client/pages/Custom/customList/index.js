@@ -11,13 +11,15 @@ Page({
         id: 1,
         talkImg: 'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner2.jpg',
         talkUser: '游客123456',
-        talkDetailed: '你在干嘛！！！！！！！！！！！！'
+        talkDetailed: '你在干嘛！！！！！！！！！！！！',
+        typeNew:true
       },
       {
         id: 2,
         talkImg: 'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner3.jpg',
         talkUser: '游客789012',
-        talkDetailed: '我在当码农。。。。。。。'
+        talkDetailed: '我在当码农。。。。。。。',
+        typeNew: false
       }
     ],
     talkListWait: [
@@ -47,20 +49,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    //common是自己写的公共JS方法，可忽略
-    common.sys_main(app, that, e);
-    for (var i = 0; i < 10; i++) {
-      this.data.talkListOver.push({
-        content: i + " 向左滑动删除哦",
-        isTouchMove: false //默认隐藏删除
-      });
-    };
-    for (var i = 0; i < 10; i++) {
-      this.data.talkListWait.push({
-        content: i + " 向左滑动删除哦",
-        isTouchMove: false //默认隐藏删除
-      });
-    }
     this.setData({
       talkListOver: this.data.talkListOver,
       talkListWait: this.data.talkListWait,

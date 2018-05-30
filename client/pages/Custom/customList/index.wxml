@@ -27,7 +27,7 @@
               <view style="flex:1" class='talkTime'>
                2015.05.26.12:06
               </view> 
-              <view style="flex:0.5" class='talkNew'>
+              <view style="flex:0.5" class='talkNew' wx:if='{{item.typeNew}}'>
                <text>新</text>
               </view> 
             </view> 

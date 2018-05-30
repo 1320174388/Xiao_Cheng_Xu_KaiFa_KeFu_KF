@@ -76,7 +76,12 @@ Page({
       })
     }, 500);
   },
-
+  // 聊天跳转
+  costom: function () {
+    wx.navigateTo({
+      url: '/pages/Custom/customList/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

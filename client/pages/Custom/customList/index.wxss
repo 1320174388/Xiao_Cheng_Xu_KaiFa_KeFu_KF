@@ -1,6 +1,6 @@
 .container {
    min-height: 100%; 
-   margin-top: 150rpx;
+   margin-top: 110rpx;
    position: fixed;
    max-height: 800rpx;
 }
@@ -63,7 +63,7 @@ page{
 .navbar{  
   flex: none;  
   display: flex;  
-  background: #16c7de; 
+  background: #393A3E; 
   color: #EDECE8; 
   position: fixed;
   width: 100%;
@@ -72,7 +72,7 @@ page{
   position: relative;  
   flex: auto;  
   text-align: center;  
-  line-height: 150rpx;  
+  line-height: 110rpx;  
 }  
 .navbar .item.active{  
   color: #FFF;  
