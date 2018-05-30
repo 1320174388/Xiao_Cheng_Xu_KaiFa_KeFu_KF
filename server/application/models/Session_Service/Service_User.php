@@ -18,14 +18,19 @@ class Service_User extends CI_Model
                 'session_id'     => $openid,
                 'session_keys'   => $this->token(),
                 'session_status' => 0,
-                'session_sort'   => 2
+                'session_sort'   => 1
             ]);
             if($res){
                 $user = $this->db->get_where($this->tableName,['session_id'=>$openid]);
                 return $user->result()[0];
             }
         }else{
-            return $user->result()[0];
+            $this->db->where('session_id', $openid);
+            $res = $this->db->update($this->tableName, ['session_sort'=>1]);
+            if($res){
+                $user = $this->db->get_where($this->tableName,['session_id'=>$openid]);
+                return $user->result()[0];
+            }
         }
 
     }
