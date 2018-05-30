@@ -19,6 +19,14 @@ var config = {
       Customer_Service_Request: `${host}/api/Customer_Service/Information_push/Customer_Service_Request`,
       // 客服请求历史信息接口
       Customer_Service_Response: `${host}/api/Customer_Service/Information_push/Customer_Service_Response`,
+      // 客服请求最新信息接口
+      Customer_Service_newResponse: `${host}/api/Customer_Service/Information_push/Customer_Service_newResponse`,
+      // 客服请求用户列表信息
+      Customer_Service_UserResponse: `${host}/api/Customer_Service/Information_push/Customer_Service_UserResponse`,
+      // 修改用户接入状态
+      Customer_Service_UserUpdate: `${host}/api/Customer_Service/Information_push/Customer_Service_UserUpdate`,
+      // 删除用户信息
+      Customer_Service_UserUpdate: `${host}/api/Customer_Service/Information_push/Customer_Service_UserUpdate`,
     }
 
 };

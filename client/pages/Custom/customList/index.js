@@ -1,3 +1,8 @@
+var config = require('../../../config.js');
+var app = getApp();
+var new_nums = 1;
+var setInter = null;
+var post_type = true;
 Page({
 
   /**
@@ -6,36 +11,8 @@ Page({
   data: {
     navbar: ['已经接入', '等待接入'],
     currentTab: 0,
-    talkListOver: [
-      {
-        id: 1,
-        talkImg: 'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner2.jpg',
-        talkUser: '游客123456',
-        talkDetailed: '你在干嘛！！！！！！！！！！！！',
-        typeNew:true
-      },
-      {
-        id: 2,
-        talkImg: 'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner3.jpg',
-        talkUser: '游客789012',
-        talkDetailed: '我在当码农。。。。。。。',
-        typeNew: false
-      }
-    ],
-    talkListWait: [
-      {
-        id: 1,
-        talkImg: 'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner2.jpg',
-        talkUser: '游客123456',
-        talkDetailed: '！！！！！！！！！！！！'
-      },
-      {
-        id: 2,
-        talkImg: 'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner3.jpg',
-        talkUser: '游客789012',
-        talkDetailed: '。。。。。。。'
-      }
-    ],
+    talkListOver: [],
+    talkListWait: [],
     startX: 0, //开始坐标
     startY: 0
   },
@@ -48,11 +25,57 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    this.setData({
-      talkListOver: this.data.talkListOver,
-      talkListWait: this.data.talkListWait,
-    });
+    var This = this;
+    app.post(
+      config.service.Customer_Service_UserResponse, {
+        'token': wx.getStorageSync('token'),
+      }, function (res) {
+        if (res.data.retData) {
+          var data = res.data.retData;
+          var talkListOver = [];
+          var talkListWait = [];
+          for (var i in data) {
+            if (data[i].session_status == 1) {
+              talkListOver[talkListOver.length] = data[i];
+            }
+            if (data[i].session_status == 0) {
+              talkListWait[talkListWait.length] = data[i];
+            }
+          }
+          This.setData({
+            talkListOver: talkListOver,
+            talkListWait: talkListWait
+          });
+        }
+      }
+    );
+    setInter = setInterval(function () {
+      app.post(
+        config.service.Customer_Service_UserResponse, {
+          'token': wx.getStorageSync('token'),
+        }, function (res) {
+          if (res.data.retData) {
+            var data = res.data.retData;
+            var talkListOver = [];
+            var talkListWait = [];
+            for (var i in data) {
+              if (data[i].session_status == 1) {
+                talkListOver[talkListOver.length] = data[i];
+              }
+              if (data[i].session_status == 2) {
+                talkListWait[talkListWait.length] = data[i];
+              }
+            }
+            if (JSON.stringify(This.data.talkListOver) != JSON.stringify(talkListOver)) {
+              This.setData({
+                talkListOver: talkListOver,
+                talkListWait: talkListWait
+              });
+            }
+          }
+        }
+      );
+    }, 1000);
   },
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {
@@ -158,17 +181,31 @@ Page({
       talkListWait: this.data.talkListWait,
     })
   },
-  // 已经接入
-  costomTalk:function(){
-    wx.navigateTo({
-      url: '/pages/Custom/customTalk/index',
-    })
-  },
-  // 等待接入
-  costomTalks: function () {
-    wx.navigateTo({
-      url: '/pages/Custom/customTalk/index',
-    })
+  costomTalk: function (res) {
+    if(post_type){
+      post_type = false;
+    }
+    var session_keys = res.currentTarget.dataset.session_keys;
+    if (res.currentTarget.dataset.user_avatar){
+      var user_avatar = res.currentTarget.dataset.user_avatar;
+    }else{
+      var user_avatar = 'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/avatar_default.png';
+    }
+    app.post(
+      config.service.Customer_Service_UserUpdate, {
+        'token': wx.getStorageSync('token'),
+        'session_keys': session_keys
+      }, function (res) {
+        if (res.data.retData){
+          wx.setStorageSync('session_keys', session_keys);
+          wx.setStorageSync('user_avatar', user_avatar);
+          post_type = true;
+          wx.navigateTo({
+            url: '/pages/Custom/customTalk/index',
+          });
+        }
+      }
+    );
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -195,7 +232,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(setInter);
+    setInter = null;
   },
 
   /**

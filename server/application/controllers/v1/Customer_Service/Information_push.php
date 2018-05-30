@@ -66,21 +66,6 @@ class Information_push extends CI_Controller
 
             $this->Service_Service->set_Service_Service($session_keys,$postObj);
 
-            if( ($postObj->MsgType=="text") && (!empty(trim($postObj->Content))) )
-            {
-                $this->Information_pushs($this->Config_openId,$postObj->MsgType,$postObj->Content);
-            }
-
-            if( ($postObj->MsgType=="image") && (!empty($postObj->MediaId)) )
-            {
-                $this->Information_pushs($this->Config_openId,$postObj->MsgType,$postObj->MediaId);
-            }
-
-            if( ($postObj->MsgType=="file") && (!empty($postObj->FileKey)) )
-            {
-                $this->Information_pushs($this->Config_openId,"text","【File:{$postObj->Title},Size:{$postObj->Description}】");
-            }
-
             $XmlTpl = "<xml><ToUserName><![CDATA[".$postObj->FromUserName."]]></ToUserName><FromUserName><![CDATA[".$postObj->ToUserName."]]></FromUserName><CreateTime>".time()."</CreateTime><MsgType><![CDATA[transfer_customer_service]]></MsgType></xml>";
 
             echo $XmlTpl;
@@ -164,10 +149,82 @@ class Information_push extends CI_Controller
             return return_response( 2, '没有发送用户标识', false );
         }
 
-        $res = $this->Service_Service->get_History_Service($session_keys);
+        $session_nums = $this->input->post('session_nums');
+
+        if(!$session_nums){
+            return return_response( 3, '没有发送当前会话信息最大下标', false );
+        }
+
+        $res = $this->Service_Service->get_History_newService($session_keys,$session_nums);
 
         if($res){
             return return_response( 0, '请求成功', $res );
+        }else{
+            return return_response( 0, '请求成功', false );
+        }
+    }
+
+    /**
+     * 获取客服用户列表信息
+     */
+    public function Customer_Service_UserResponse()
+    {
+        if(!is_system_admin()){
+            return return_response( 1, '你没有权限进行此操作', false );
+        }
+
+        $res = $this->Service_User->get_Service_UserList();
+
+        if($res){
+            return return_response( 0, '请求成功', $res );
+        }else{
+            return return_response( 0, '请求成功', false );
+        }
+    }
+
+    /**
+     * 修改客服用户接入状态
+     */
+    public function Customer_Service_UserUpdate()
+    {
+        if(!is_system_admin()){
+            return return_response( 1, '你没有权限进行此操作', false );
+        }
+
+        $session_keys = $this->input->post('session_keys');
+
+        if(!$session_keys){
+            return return_response( 2, '没有发送用户标识', false );
+        }
+
+        $res = $this->Service_User->get_Service_UserUpdate($session_keys);
+
+        if($res){
+            return return_response( 0, '请求成功', true );
+        }else{
+            return return_response( 0, '请求成功', false );
+        }
+    }
+
+    /**
+     * 删除用户消息
+     */
+    public function Customer_Service_UserDelete()
+    {
+        if(!is_system_admin()){
+            return return_response( 1, '你没有权限进行此操作', false );
+        }
+
+        $session_keys = $this->input->post('session_keys');
+
+        if(!$session_keys){
+            return return_response( 2, '没有发送用户标识', false );
+        }
+
+        $res = $this->Service_User->get_Service_UserDelete($session_keys);
+
+        if($res){
+            return return_response( 0, '请求成功', true );
         }else{
             return return_response( 0, '请求成功', false );
         }

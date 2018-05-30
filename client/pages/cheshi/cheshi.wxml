@@ -4,3 +4,5 @@
 <view bindtap='cheshihuoqu'>pages/cheshi/cheshi.wxml_测试历史信息</view>
 <view>-------------------------------------------</view>
 <view bindtap='huoqunewdata'>pages/cheshi/cheshi.wxml_测试最新信息</view>
+<view>-------------------------------------------</view>
+<view bindtap='huoqushuju'>pages/cheshi/cheshi.wxml_测试最新数据</view>

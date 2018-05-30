@@ -5,22 +5,18 @@
       <scroll-view scroll-y="true" scroll-top="0" style="height:1000rpx;">
         <block>
           <view class="content-column">
-            <!-- 右边聊天对话框 -->
-            <view style="flex:1;">
-              <view class="content-row">
+            <!-- 聊天对话框 -->
+            <view wx:for="{{conversation}}" wx:key="{{index}}" style="flex:1;">
+              <view wx:if="{{item.session_diff == 0?true:false}}" class="content-row">
                 <!-- 聊天文字 -->
                 <view style="flex:1">
                   <view class="content-column">
-                    <!-- 用户昵称 -->
-                    <!-- <view style="flex:1;" class='right-user'>
-                      游客123456
-                    </view> -->
                     <!-- 聊天对话框 -->
                     <view style="flex:1" class='rightTalkBorder'>
                       <view class="content-row">
                         <!-- 聊天文字 -->
                         <view style="flex:1;">
-                          <text class='right_txt'>hjjjjjjx</text>  
+                          <text class='right_txt'>{{item.session_value}}</text>  
                         </view>
                         <!-- 聊天小三角 -->
                         <view style="flex:0.04;">
@@ -32,44 +28,37 @@
                 </view>
                 <!-- 头像图片 -->
                 <view style="flex:0.15;" class='right-img'>
-                  <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner3.jpg' class='rimg'></image>
+                  <image wx:if="{{user_avatar}}" src='{{user_avatar}}' class='rimg'></image>
                 </view>
-              </view> 
-            </view>
-            <!-- 左边聊天对话框 -->
-            <view style="flex:1;">
-              <view class="content-row">
+              </view>
+              <view wx:if="{{item.session_diff == 1?true:false}}" class="content-row">
                 <!-- 头像图片 -->
                 <view style="flex:0.1;" class='left-img'>
-                  <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner2.jpg' class='limg'></image>
+                  <image wx:if="{{user_avatar}}" src='{{user_avatar}}'  class='limg'></image>
                 </view>
                 <!-- 聊天文字 -->
                 <view style="flex:1;">
                   <view class="content-column">
-                    <!-- 用户昵称 -->
-                    <!-- <view style="flex:1;" class='left-user'>
-                      游客123456
-                    </view>  -->
                     <!-- 聊天对话框 -->
                     <view style="flex:1" class='leftTalkBorder'>
                       <view class="content-row">
                         <!-- 聊天小三角 -->
-                        <view style="flex:0.041;">
+                        <view wx:if="{{item.session_type!='image'?true:false}}" style="flex:0.041;">
                           <view class='lsanjiao you'></view>
                         </view>  
                         <!-- 聊天文字 -->
-                         <view style="flex:1;" hidden='{{talkText}}'>
-                          <text class='left_txt'>hjjjjjjx</text>  
+                         <view wx:if="{{item.session_type!='image'?true:false}}" style="flex:1;">
+                          <text class='left_txt'>{{item.session_value}}</text>  
                         </view>  
-                        <view style="flex:1;" hidden='{{talkImg}}'>
-                          <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner2.jpg' class='lpic' mode="widthFix"></image> 
+                        <view wx:if="{{item.session_type=='image'?true:false}}" style="flex:1;">
+                          <image src='{{item.session_value}}' class='lpic' mode="widthFix"></image> 
                         </view> 
                       </view> 
                     </view> 
                   </view> 
                 </view>
               </view> 
-            </view> 
+            </view>
           </view> 
         </block>
       </scroll-view>
@@ -78,11 +67,11 @@
     <view style="flex:1" class='sendmessage'>
       <view class="content-row">
         <view style="flex:1;" class='titleInput'>
-         <input placeholder='打个招呼吧' auto-height maxlength='-1' fixed='true' bindinput='changeTextarea'></input>
+         <input placeholder='打个招呼吧' auto-height maxlength='-1' fixed='true' bindinput='changeTextarea' value='{{searchinput}}'></input>
         </view>
         <view style="flex:1">
-          <button catchtap="add"  hidden='{{send_color}}' class='send'>发送</button>
-          <button catchtap="add"  hidden='{{sends_color}}' class='send sends'>发送</button> 
+          <button catchtap="input_add" hidden='{{send_color}}' class='send'>发送</button>
+          <button hidden='{{sends_color}}' class='send sends'>发送</button> 
         </view>  
       </view> 
     </view>

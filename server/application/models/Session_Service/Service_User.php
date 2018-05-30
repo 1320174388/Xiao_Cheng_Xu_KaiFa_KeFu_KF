@@ -19,6 +19,7 @@ class Service_User extends CI_Model
                 'session_keys'   => $this->token(),
                 'session_status' => 0,
                 'session_sort'   => 1,
+                'session_times'  => date('Y-m-d H:i',time()),
                 'session_newcont'=> $Content
             ]);
             if($res){
@@ -27,7 +28,11 @@ class Service_User extends CI_Model
             }
         }else{
             $this->db->where('session_id', $openid);
-            $res = $this->db->update($this->tableName, ['session_sort'=>1]);
+            $res = $this->db->update($this->tableName, [
+                'session_sort'   => 1,
+                'session_times'  => date('Y-m-d H:i',time()),
+                'session_newcont'=> $Content
+            ]);
             if($res){
                 $user = $this->db->get_where($this->tableName,['session_id'=>$openid]);
                 return $user->result()[0];
@@ -40,6 +45,29 @@ class Service_User extends CI_Model
     {
         $res = $this->CI->db->get_where($this->tableName,['open_id'=>$openid]);
         return $res->result()[0];
+    }
+
+    public function get_Service_UserList()
+    {
+        $quesr_sql = "select session_keys,session_status,session_sort,user_name,user_avatar,session_newcont,session_times from {$this->tableName} left join data_home_users on session_id = open_id order by session_sort asc";
+        $res = $this->db->query($quesr_sql);
+        return $res->result();
+    }
+
+    public function get_Service_UserUpdate($session_keys)
+    {
+        $this->db->where('session_keys', $session_keys);
+        $res = $this->db->update($this->tableName, [
+            'session_sort'   => 2,
+            'session_status' => 1,
+        ]);
+        return $res;
+    }
+
+    public function get_Service_UserDelete($session_keys)
+    {
+        $this->db->where('session_keys', $session_keys);
+        return $this->db->delete($this->tableName);
     }
 
     protected function token() {

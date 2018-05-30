@@ -1,6 +1,7 @@
 // pages/cheshi/cheshi.js
 var config = require('../../config.js');
 var app = getApp();
+var new_nums = 1;
 Page({
 
   /**
@@ -17,7 +18,7 @@ Page({
       config.service.Customer_Service_Request,{
         'token':wx.getStorageSync('token'),
         'content':'测试接口会话信息',
-        'session_keys':'0d855238a92633c7e447fe86d4b9ee39'
+        'session_keys':'825b1c4cacc5724c9decf0bb50340f55'
       },function(res){
         console.log(res.data)
       }
@@ -27,14 +28,35 @@ Page({
     app.post(
       config.service.Customer_Service_Response, {
         'token': wx.getStorageSync('token'),
-        'session_keys': '0d855238a92633c7e447fe86d4b9ee39'
+        'session_keys': '825b1c4cacc5724c9decf0bb50340f55'
       }, function (res) {
-        console.log(res.data)
+        if (res.data.retData) {
+          var data = res.data.retData;
+          new_nums = data[data.length - 1].session_sorts;
+          console.log(new_nums);
+        }
       }
     );
   },
   huoqunewdata:function(res){
-    console.log(res);
+    app.post(
+      config.service.Customer_Service_newResponse, {
+        'token': wx.getStorageSync('token'),
+        'session_keys': '825b1c4cacc5724c9decf0bb50340f55',
+        'session_nums': new_nums
+      }, function (res) {
+        console.log(res.data.retData)
+      }
+    );
+  },
+  huoqushuju:function(res){
+    app.post(
+      config.service.Customer_Service_UserResponse, {
+        'token': wx.getStorageSync('token'),
+      }, function (res) {
+        console.log(res.data)
+      }
+    );
   },
   /**
    * 生命周期函数--监听页面加载

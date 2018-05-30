@@ -51,13 +51,21 @@ class Service_Service extends CI_Model
 
     public function get_History_Service($session_keys)
     {
-        $res = $this->db->get_where($this->tableName,['session_keys'=>$session_keys]);
-        return $res->result();
+        $time = time() - 172800;
+
+        $this->db->where('session_time <', $time);
+
+        $this->db->delete($this->tableName);
+
+        $quesr_sql = "select * from {$this->tableName} where session_keys = '{$session_keys}' order by session_sorts asc";
+
+        return $this->db->query($quesr_sql)->result();
     }
 
-    public function get_History_newService($session_keys)
+    public function get_History_newService($session_keys,$session_nums)
     {
-
+        $quesr_sql = "select * from {$this->tableName} where session_keys = '{$session_keys}' and session_sorts > {$session_nums}";
+        return $this->db->query($quesr_sql)->result();
     }
 
     protected function token() {

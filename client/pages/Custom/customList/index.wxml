@@ -3,31 +3,34 @@
   <view class="navbar">  
     <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>  
   </view>
-
   <!--已经接入-->
   <scroll-view scroll-y="true" class="container" hidden="{{currentTab!==0}}">
     <block wx:for="{{talkListOver}}" wx:key="">
-      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtap='costomTalk'> 
+      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-session_keys="{{item.session_keys}}" data-user_avatar="{{item.user_avatar}}" bindtap='costomTalk'> 
         <view class="content-row content">
           <view style="flex:0.3" class='overImg'>
-            <image src='{{item.talkImg}}' class='headImg'></image>
+            <image wx:if="{{item.user_avatar}}" src='{{item.user_avatar}}' class='headImg'></image>
+            <image wx:if="{{!item.user_avatar}}" src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/avatar_default.png' class='headImg'></image>
           </view>
           <view style="flex:1">
             <view class="content-column overTalk">
-              <view style="flex:1">
-                {{item.talkUser}}
+              <view wx:if="{{item.user_name}}" style="flex:1">
+                {{item.user_name}}
+              </view>
+              <view wx:if="{{!item.user_name}}" style="flex:1">
+                未授权用户
               </view>
               <view style="flex:1.5" class='talkDetailed'>
-              {{item.talkDetailed}}
+              {{item.session_newcont}}
               </view>  
             </view>
           </view>
           <view style="flex:0.5">
             <view class="content-column">
               <view style="flex:1" class='talkTime'>
-               2015.05.26.12:06
+               {{item.session_times}}
               </view> 
-              <view style="flex:0.5" class='talkNew' wx:if='{{item.typeNew}}'>
+              <view wx:if="{{item.session_sort==1}}" style="flex:0.5" class='talkNew'>
                <text>新</text>
               </view> 
             </view> 
@@ -41,29 +44,33 @@
 
   <!--等待接入-->
   <scroll-view scroll-y="true" class="container" hidden="{{currentTab!==1}}">
-    <block wx:for="{{talkListWait}}" wx:key="">
-      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-indexs="{{index}}" bindtouchstart="touchstarts" bindtouchmove="touchmoves" bindtap='costomTalks'>
+    <block wx:for="{{talkListWait}}" wx:key="{{index}}">
+      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-indexs="{{index}}" bindtouchstart="touchstarts" bindtouchmove="touchmoves" data-session_keys="{{item.session_keys}}" data-user_avatar="{{item.user_avatar}}" bindtap='costomTalk'>
         <view class="content-row content">
           <view style="flex:0.3" class='overImg'>
-            <image src='{{item.talkImg}}' class='headImg'></image>
+            <image wx:if="{{item.user_avatar}}" src='{{item.user_avatar}}' class='headImg'></image>
+            <image wx:if="{{!item.user_avatar}}" src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/avatar_default.png' class='headImg'></image>
           </view>
           <view style="flex:1">
             <view class="content-column overTalk">
-              <view style="flex:1">
-                {{item.talkUser}}
+              <view wx:if="{{item.user_name}}" style="flex:1">
+                {{item.user_name}}
+              </view>
+              <view wx:if="{{!item.user_name}}" style="flex:1">
+                未授权用户
               </view>
               <view style="flex:1.5" class='talkDetailed'>
-              {{item.talkDetailed}}
+              {{item.session_newcont}}
               </view>  
             </view>
           </view>
           <view style="flex:0.5" class='talkTime'>
             <view class="content-column">
               <view style="flex:1" class='talkTime'>
-               2015.05.26.12:06
+                {{item.session_times}}
               </view> 
-              <view style="flex:0.5" class='talkNew'>
-               <text>新</text>
+              <view wx:if="{{item.session_sort==1}}" style="flex:0.5" class='talkNew'>
+                <text>新</text>
               </view> 
             </view>
           </view>
