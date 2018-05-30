@@ -1,0 +1,131 @@
+.container {
+   min-height: 100%; 
+   margin-top: 150rpx;
+   position: fixed;
+   max-height: 800rpx;
+}
+.touch-item {
+ font-size: 14px;
+ display: flex;
+ justify-content: space-between;
+ border-bottom:1px solid #ccc;
+ width: 100%;
+ overflow: hidden
+}
+.content {
+ width: 100%;
+ padding: 10px;
+ margin-right:0;
+ -webkit-transition: all 0.4s;
+ transition: all 0.4s;
+ -webkit-transform: translateX(90px);
+ transform: translateX(90px);
+ margin-left: -90px
+}
+.del {
+ background-color: orangered;
+ width: 70px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ color: #fff;
+ -webkit-transform: translateX(90px);
+ transform: translateX(90px);
+ -webkit-transition: all 0.4s;
+ transition: all 0.4s;
+ font-size: 35rpx;
+
+}
+.touch-move-active .content,
+.touch-move-active .del {
+ -webkit-transform: translateX(0);
+ transform: translateX(0);
+}
+
+
+
+page{  
+  display: flex;  
+  flex-direction: column;  
+  height: 100%; 
+  background-color: #F7F7F9; 
+}
+.content-column{
+  display: flex;  
+  flex-direction: column;  
+}
+.content-row{  
+  display: flex;  
+  flex-direction: row;  
+}  
+/* 导航条 */
+.navbar{  
+  flex: none;  
+  display: flex;  
+  background: #16c7de; 
+  color: #EDECE8; 
+  position: fixed;
+  width: 100%;
+}  
+.navbar .item{  
+  position: relative;  
+  flex: auto;  
+  text-align: center;  
+  line-height: 150rpx;  
+}  
+.navbar .item.active{  
+  color: #FFF;  
+}  
+.navbar .item.active:after{  
+  content: "";  
+  display: block;  
+  position: absolute;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  height: 4rpx;  
+  background: #FFF66D;  
+}
+/* 已经接入 */
+
+.overImg{
+  text-align: center;
+  /* padding-top: 30rpx; */
+}
+.headImg{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+}
+.overTalk{
+   line-height: 52rpx; 
+  font-size: 30rpx;
+  color: #424B50;
+  /* margin-top: 25rpx; */
+  padding-left: 10rpx;
+}
+.talkDetailed{
+  width: 300rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.talkTime{
+  font-size: 20rpx;
+  color: #424B50;
+   line-height: 50rpx; 
+}
+.talkNew{
+  float: right;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: red;
+  color: #fff;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  margin-left: 120rpx;
+  margin-top: 10rpx;
+}

@@ -1,0 +1,75 @@
+<view>
+  <!--导航条-->  
+  <view class="navbar">  
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>  
+  </view>
+
+  <!--已经接入-->
+  <scroll-view scroll-y="true" class="container" hidden="{{currentTab!==0}}">
+    <block wx:for="{{talkListOver}}" wx:key="">
+      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtap='costomTalk'> 
+        <view class="content-row content">
+          <view style="flex:0.3" class='overImg'>
+            <image src='{{item.talkImg}}' class='headImg'></image>
+          </view>
+          <view style="flex:1">
+            <view class="content-column overTalk">
+              <view style="flex:1">
+                {{item.talkUser}}
+              </view>
+              <view style="flex:1.5" class='talkDetailed'>
+              {{item.talkDetailed}}
+              </view>  
+            </view>
+          </view>
+          <view style="flex:0.5">
+            <view class="content-column">
+              <view style="flex:1" class='talkTime'>
+               2015.05.26.12:06
+              </view> 
+              <view style="flex:0.5" class='talkNew'>
+               <text>新</text>
+              </view> 
+            </view> 
+          </view>
+        </view> 
+        <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+        </view>
+    </block>
+  </scroll-view>
+
+
+  <!--等待接入-->
+  <scroll-view scroll-y="true" class="container" hidden="{{currentTab!==1}}">
+    <block wx:for="{{talkListWait}}" wx:key="">
+      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-indexs="{{index}}" bindtouchstart="touchstarts" bindtouchmove="touchmoves" bindtap='costomTalks'>
+        <view class="content-row content">
+          <view style="flex:0.3" class='overImg'>
+            <image src='{{item.talkImg}}' class='headImg'></image>
+          </view>
+          <view style="flex:1">
+            <view class="content-column overTalk">
+              <view style="flex:1">
+                {{item.talkUser}}
+              </view>
+              <view style="flex:1.5" class='talkDetailed'>
+              {{item.talkDetailed}}
+              </view>  
+            </view>
+          </view>
+          <view style="flex:0.5" class='talkTime'>
+            <view class="content-column">
+              <view style="flex:1" class='talkTime'>
+               2015.05.26.12:06
+              </view> 
+              <view style="flex:0.5" class='talkNew'>
+               <text>新</text>
+              </view> 
+            </view>
+          </view>
+        </view> 
+        <view class="del" catchtap="dels" data-indexs="{{index}}">删除</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
