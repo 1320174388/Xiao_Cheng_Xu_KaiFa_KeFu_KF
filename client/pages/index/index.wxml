@@ -49,7 +49,7 @@
         <button hidden='{{IsAdmin_hidden}}'  class='btn' bindtap='costom'>
             <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/kefu_icon.png' class='btn_img'></image>
         </button>
-    <!--授权  --> 
+    <!-- 授权  --> 
         <button hidden='{{onload_hidden}}' open-type='getUserInfo' class='btn'>
         <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/accuont_icon.png' class='btn_img'></image>
         </button>
