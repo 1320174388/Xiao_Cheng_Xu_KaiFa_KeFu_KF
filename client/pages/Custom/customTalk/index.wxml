@@ -1,8 +1,8 @@
-<view class='page'>
+<view id='page'>
   <!-- 聊天对话 -->
   <view class="content-column">
     <view style="flex:1;">
-      <scroll-view scroll-y="true" scroll-top="0" style="height:1000rpx;">
+      <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style=''>
         <block>
           <view class="content-column">
             <!-- 聊天对话框 -->
@@ -49,10 +49,10 @@
                         <!-- 聊天文字 -->
                          <view wx:if="{{item.session_type!='image'?true:false}}" style="flex:1;">
                           <text class='left_txt'>{{item.session_value}}</text>  
-                        </view>  
+                        </view>
                         <view wx:if="{{item.session_type=='image'?true:false}}" style="flex:1;">
                           <image src='{{item.session_value}}' class='lpic' mode="widthFix"></image> 
-                        </view> 
+                        </view>  
                       </view> 
                     </view> 
                   </view> 
@@ -64,6 +64,7 @@
       </scroll-view>
     </view>
     <!-- 发送信息 -->
+    <view style='height:100rpx'></view>
     <view style="flex:1" class='sendmessage'>
       <view class="content-row">
         <view style="flex:1;" class='titleInput'>

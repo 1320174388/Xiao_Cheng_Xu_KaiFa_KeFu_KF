@@ -9,7 +9,6 @@ page{
   display: flex;  
   flex-direction: row;  
 }
-
 /* 右边用户昵称 */
 .right-user{
   text-align: right;
@@ -68,8 +67,13 @@ page{
   padding-left: 20rpx;
 }
 /* 左边聊天文字 */
+/* .left_txt{
+   word-break:break-all;
+  font-size:30rpx; 
+} */
 .left_txt{
   word-break:break-all;
+  float: left;
   max-width: 380rpx;   
   border-radius: 3px;  
   background-color: #fff;  
@@ -90,6 +94,7 @@ page{
 }
 .lpic{
   max-width: 430rpx;
+  margin-left:25rpx;
 }
 .leftTalkBorder{
   margin-top: 27rpx;
@@ -129,7 +134,7 @@ page{
   font-size: 12px;
   position: fixed;
   bottom: 12rpx;
-  right: 0; 
+  right:7rpx;
 }
 .sends{ 
   background: #DDDEE0;

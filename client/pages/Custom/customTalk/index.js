@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    scrollTop: 0,
     send_color:true,
     sends_color: false,
     talkText: false,
@@ -36,6 +37,7 @@ Page({
             conversation: res.data.retData,
             user_avatar: wx.getStorageSync('user_avatar')
           });
+          setTimeout(This.scroll_def,500);
           setInter = setInterval(function () {
             app.post(
               config.service.Customer_Service_newResponse, {
@@ -52,6 +54,7 @@ Page({
                   This.setData({
                     conversation: conversation,
                   });
+                  This.scroll_def();
                 }
               }
             );
@@ -59,6 +62,17 @@ Page({
         }
       }
     );
+  },
+  /**
+   * 发送消息时显示最下方
+   */
+  scroll_def:function(){
+    wx.createSelectorQuery().select('#page').boundingClientRect(function (rect) {
+      // 使页面滚动到底部
+      wx.pageScrollTo({
+        scrollTop: rect.height
+      })
+    }).exec()
   },
 
   /**
