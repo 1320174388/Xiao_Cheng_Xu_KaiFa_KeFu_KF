@@ -1,17 +1,19 @@
 // pages/ProductPresentation/index.js
+var config = require('../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    config_imgUrl: config.imgUrl,
     picture:[
-      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG38.jpeg',
-      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG39.jpeg',
-      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG30.jpeg',
-      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG34.jpeg',
-      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG32.jpeg',
-      'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG31.jpeg'
+      config.imgUrl +'WechatIMG38.jpeg',
+      config.imgUrl +'WechatIMG39.jpeg',
+      config.imgUrl +'WechatIMG30.jpeg',
+      config.imgUrl +'WechatIMG34.jpeg',
+      config.imgUrl +'WechatIMG32.jpeg',
+      config.imgUrl +'WechatIMG31.jpeg'
     ],
     onload_hidden: true,
     IsAdmin_hidden: true,

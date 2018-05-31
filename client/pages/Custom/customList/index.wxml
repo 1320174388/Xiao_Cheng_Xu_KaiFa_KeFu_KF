@@ -10,7 +10,7 @@
         <view class="content-row content">
           <view style="flex:0.3" class='overImg'>
             <image wx:if="{{item.user_avatar}}" src='{{item.user_avatar}}' class='headImg'></image>
-            <image wx:if="{{!item.user_avatar}}" src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/avatar_default.png' class='headImg'></image>
+            <image wx:if="{{!item.user_avatar}}" src='{{config_imgUrl}}avatar_default.png' class='headImg'></image>
           </view>
           <view style="flex:1">
             <view class="content-column overTalk">
@@ -48,7 +48,7 @@
         <view class="content-row content">
           <view style="flex:0.3" class='overImg'>
             <image wx:if="{{item.user_avatar}}" src='{{item.user_avatar}}' class='headImg'></image>
-            <image wx:if="{{!item.user_avatar}}" src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/avatar_default.png' class='headImg'></image>
+            <image wx:if="{{!item.user_avatar}}" src='{{config_imgUrl}}avatar_default.png' class='headImg'></image>
           </view>
           <view style="flex:1">
             <view class="content-column overTalk">

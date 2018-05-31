@@ -1,10 +1,12 @@
 // pages/about/about.js
+var config = require('../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    config_imgUrl: config.imgUrl,
     onload_hidden: true,
     IsAdmin_hidden: true,
     NoAdmin_hidden: false,
@@ -141,7 +143,7 @@ Page({
 
     wx.previewImage({
       
-      urls: ['https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/764844130884085437.jpg'] 
+      urls: [config.imgUrl +'764844130884085437.jpg'] 
     })
 
   }

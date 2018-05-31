@@ -9,11 +9,11 @@
       <view class="content-row">
         <!-- 左侧图片介绍 -->
         <view style="flex:1" class='context-leftimg'>
-          <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG38.jpeg' class='WechatIMG39' bindtap='blp' id='0'></image>
+          <image src='{{config_imgUrl}}WechatIMG38.jpeg' class='WechatIMG39' bindtap='blp' id='0'></image>
         </view>
         <!-- 右侧图片介绍 -->
         <view style="flex:1" class='context-rightimg'>
-          <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG39.jpeg' class='WechatIMG39' bindtap='blp' id='1'></image>
+          <image src='{{config_imgUrl}}WechatIMG39.jpeg' class='WechatIMG39' bindtap='blp' id='1'></image>
         </view> 
       </view>
     </view>
@@ -56,11 +56,11 @@
         <view class="content-row context-fillimg">
           <!-- 左侧填充现场图片 -->
           <view style="flex:1" class='context-leftfillimg'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG30.jpeg' class='WechatIMG30' bindtap='blp' id='2'></image>
+            <image src='{{config_imgUrl}}WechatIMG30.jpeg' class='WechatIMG30' bindtap='blp' id='2'></image>
           </view>
            <!-- 右侧填充现场图片 -->
           <view style="flex:1" class='context-rightfillimg'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG34.jpeg' class='WechatIMG30' bindtap='blp' id='3'></image>
+            <image src='{{config_imgUrl}}WechatIMG34.jpeg' class='WechatIMG30' bindtap='blp' id='3'></image>
           </view> 
         </view>
       </view> 
@@ -69,11 +69,11 @@
         <view class="content-row">
           <!-- 左侧填充现场图片 -->
           <view style="flex:1" class='context-leftfillimg'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG32.jpeg' class='WechatIMG30' bindtap='blp' id='4'></image>
+            <image src='{{config_imgUrl}}WechatIMG32.jpeg' class='WechatIMG30' bindtap='blp' id='4'></image>
           </view>
           <!-- 右侧填充现场图片 -->
           <view style="flex:1" class='context-rightfillimg'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/WechatIMG31.jpeg' class='WechatIMG30' bindtap='blp' id="5"></image>
+            <image src='{{config_imgUrl}}WechatIMG31.jpeg' class='WechatIMG30' bindtap='blp' id="5"></image>
           </view> 
         </view>
       </view>
@@ -102,22 +102,22 @@
     <view class='kefu_rexian_dizhi'>
     <!--客服  --> 
         <button hidden='{{NoAdmin_hidden}}' open-type='contact' class='btn'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/kefu_icon.png' class='btn_img'></image>
+            <image src='{{config_imgUrl}}kefu_icon.png' class='btn_img'></image>
         </button>
         <button hidden='{{IsAdmin_hidden}}'  class='btn' bindtap='costom'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/kefu_icon.png' class='btn_img'></image>
+            <image src='{{config_imgUrl}}kefu_icon.png' class='btn_img'></image>
         </button>
         <!--授权  --> 
          <button hidden='{{onload_hidden}}' open-type='getUserInfo' class='btn'>
-        <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/accuont_icon.png' class='btn_img'></image>
+        <image src='{{config_imgUrl}}accuont_icon.png' class='btn_img'></image>
         </button>
         <!--热线  -->
         <button class='btn' bindtap='phone'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/phone_icon.png' class='btn_img'></image>
+            <image src='{{config_imgUrl}}/phone_icon.png' class='btn_img'></image>
         </button>
         <!--地址  -->
         <button class='btn' bindtap='address'>
-            <image src='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/dizhi_icon.png' class='btn_img'></image>
+            <image src='{{config_imgUrl}}dizhi_icon.png' class='btn_img'></image>
         </button>
     </view>
 </view>

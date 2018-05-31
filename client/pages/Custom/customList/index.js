@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    config_imgUrl: config.imgUrl,
     isTouchMove:[],
     navbar: ['已经接入', '等待接入'],
     currentTab: 0,
@@ -148,7 +149,7 @@ Page({
     if (res.currentTarget.dataset.user_avatar){
       var user_avatar = res.currentTarget.dataset.user_avatar;
     }else{
-      var user_avatar = 'https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/avatar_default.png';
+      var user_avatar = config.imgUrl +'avatar_default.png';
     }
     app.post(
       config.service.Customer_Service_UserUpdate, {

@@ -1,47 +1,49 @@
 // pages/home/index/index.js
+var config=require('../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    config_imgUrl: config.imgUrl,
     swiper_banner:[
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner2.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner3.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/index-banner4.jpg"
+        config.imgUrl+"index-banner.jpg",
+        config.imgUrl +"index-banner2.jpg",
+        config.imgUrl +"index-banner3.jpg",
+        config.imgUrl +"index-banner4.jpg"
     ],
       shuiQi:[
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s1.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s2.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s3.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s4.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s5.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s6.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s7.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s8.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s9.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s10.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s11.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s12.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s13.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s14.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s15.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s16.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s17.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/s18.jpg"
+        config.imgUrl +"s1.jpg",
+        config.imgUrl +"s2.jpg",
+        config.imgUrl +"s3.jpg",
+        config.imgUrl +"s4.jpg",
+        config.imgUrl +"s5.jpg",
+        config.imgUrl +"s6.jpg",
+        config.imgUrl +"s7.jpg",
+        config.imgUrl +"s8.jpg",
+        config.imgUrl +"s9.jpg",
+        config.imgUrl +"s10.jpg",
+        config.imgUrl +"s11.jpg",
+        config.imgUrl +"s12.jpg",
+        config.imgUrl +"s13.jpg",
+        config.imgUrl +"s14.jpg",
+        config.imgUrl +"s15.jpg",
+        config.imgUrl +"s16.jpg",
+        config.imgUrl +"s17.jpg",
+        config.imgUrl +"s18.jpg"
       ],
       "yuanMu":[
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y1.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y2.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y3.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y4.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y5.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y6.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y7.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y8.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y9.jpg",
-        "https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/y10.jpg"
+        config.imgUrl +"y1.jpg",
+        config.imgUrl +"y2.jpg",
+        config.imgUrl +"y3.jpg",
+        config.imgUrl +"y4.jpg",
+        config.imgUrl +"y5.jpg",
+        config.imgUrl +"y6.jpg",
+        config.imgUrl +"y7.jpg",
+        config.imgUrl +"y8.jpg",
+        config.imgUrl +"y9.jpg",
+        config.imgUrl +"y10.jpg"
       ],
       onload_hidden: true,
       IsAdmin_hidden: true,
