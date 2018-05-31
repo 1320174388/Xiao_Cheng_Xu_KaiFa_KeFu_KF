@@ -56,7 +56,9 @@ class Information_push extends CI_Controller
 
             $openId = $postObj->FromUserName;
 
-            $Service_User = $this->Service_User->set_Service_User($openId,$postObj->Content);
+            if($this->Config_openId != $openId){
+                $Service_User = $this->Service_User->set_Service_User($openId,$postObj->Content);
+            }
 
             if($Service_User){
                 $session_keys = $Service_User->session_keys;
@@ -64,7 +66,7 @@ class Information_push extends CI_Controller
 
             $postObj->session_diff = 1;
 
-            if(($postObj->MsgType == 'text')||($postObj->MsgType == 'image')||($postObj->MsgType == 'file')){
+            if(($this->Config_openId != $openId)&&(($postObj->MsgType == 'text')||($postObj->MsgType == 'image')||($postObj->MsgType == 'file'))){
                 $this->Service_Service->set_Service_Service($session_keys,$postObj);
             }
 
@@ -179,8 +181,16 @@ class Information_push extends CI_Controller
 
         $res = $this->Service_User->get_Service_UserList();
 
+        $number = $this->Service_User->get_Service_UserNumber(1);
+
+        $newnumber = $this->Service_User->get_Service_UserNumber(0);
+
         if($res){
-            return return_response( 0, '请求成功', $res );
+            return return_response( 0, '请求成功', [
+                'list'=>$res,
+                'number'=>$number,
+                'newnumber'=>$newnumber
+            ]);
         }else{
             return return_response( 0, '请求成功', false );
         }

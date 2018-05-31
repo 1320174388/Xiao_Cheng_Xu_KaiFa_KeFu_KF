@@ -16,7 +16,7 @@ Page({
     talkListOver: [],
     talkListWait: [],
     startX: 0, //开始坐标
-    startY: 0
+    startY: 0,
   },
   navbarTap: function (e) {
     this.setData({
@@ -33,7 +33,15 @@ Page({
         'token': wx.getStorageSync('token'),
       }, function (res) {
         if (res.data.errNum == 0) {
-          var data = res.data.retData;
+          var data = res.data.retData.list,
+            data_number = res.data.retData.number,
+            data_newnumber = res.data.retData.newnumber;
+          if (!data_number){
+            data_number = 0;
+          }
+          if (!data_newnumber) {
+            data_newnumber = 0;
+          }
           var talkListOver = [];
           var talkListWait = [];
           for (var i in data) {
@@ -46,7 +54,8 @@ Page({
           }
           This.setData({
             talkListOver: talkListOver,
-            talkListWait: talkListWait
+            talkListWait: talkListWait,
+            navbar: ['已经接入(' + data_number + ')', '等待接入(' + data_newnumber +')'],
           });
         }
       }
@@ -57,7 +66,16 @@ Page({
           'token': wx.getStorageSync('token'),
         }, function (res) {
           if (res.data.errNum == 0) {
-            var data = res.data.retData;
+            var data = res.data.retData.list,
+              data_number = res.data.retData.number,
+              data_newnumber = res.data.retData.newnumber;
+
+            if (!data_number) {
+              data_number = 0;
+            }
+            if (!data_newnumber) {
+              data_newnumber = 0;
+            }
             var talkListOver = [];
             var talkListWait = [];
             for (var i in data) {
@@ -71,11 +89,13 @@ Page({
             if (JSON.stringify(This.data.talkListOver) != JSON.stringify(talkListOver)) {
               This.setData({
                 talkListOver: talkListOver,
+                navbar: ['已经接入(' + data_number + ')', '等待接入(' + data_newnumber + ')'],
               });
             }
             if (JSON.stringify(This.data.talkListWait) != JSON.stringify(talkListWait)) {
               This.setData({
-                talkListWait: talkListWait
+                talkListWait: talkListWait,
+                navbar: ['已经接入(' + data_number + ')', '等待接入(' + data_newnumber + ')'],
               });
             }
           }
