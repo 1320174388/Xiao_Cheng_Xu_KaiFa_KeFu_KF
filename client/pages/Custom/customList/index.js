@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isTouchMove:[],
     navbar: ['已经接入', '等待接入'],
     currentTab: 0,
     talkListOver: [],
@@ -30,7 +31,7 @@ Page({
       config.service.Customer_Service_UserResponse, {
         'token': wx.getStorageSync('token'),
       }, function (res) {
-        if (res.data.retData) {
+        if (res.data.errNum == 0) {
           var data = res.data.retData;
           var talkListOver = [];
           var talkListWait = [];
@@ -54,7 +55,7 @@ Page({
         config.service.Customer_Service_UserResponse, {
           'token': wx.getStorageSync('token'),
         }, function (res) {
-          if (res.data.retData) {
+          if (res.data.errNum == 0) {
             var data = res.data.retData;
             var talkListOver = [];
             var talkListWait = [];
@@ -72,7 +73,6 @@ Page({
               });
             }
             if (JSON.stringify(This.data.talkListWait) != JSON.stringify(talkListWait)) {
-              console.log(talkListWait, This.data.talkListWait)
               This.setData({
                 talkListWait: talkListWait
               });
@@ -84,82 +84,35 @@ Page({
   },
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {
-    //开始触摸时 重置所有删除
-    this.data.talkListOver.forEach(function (v, i) {
-      if (v.isTouchMove)//只操作为true的
-        v.isTouchMove = false;
-    });
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
-      talkListOver: this.data.talkListOver,
-    })
-  },
-  //手指触摸动作开始 记录起点X坐标
-  touchstarts: function (e) {
-    //开始触摸时 重置所有删除
-    this.data.talkListWait.forEach(function (v, i) {
-      if (v.isTouchMove)//只操作为true的
-        v.isTouchMove = false;
-    });
-    this.setData({
-      startX: e.changedTouches[0].clientX,
-      startY: e.changedTouches[0].clientY,
-      talkListWait: this.data.talkListWait,
+      isTouchMove: []
     })
   },
   //滑动事件处理
   touchmove: function (e) {
     var that = this,
-      index = e.currentTarget.dataset.index,//当前索引
-      startX = that.data.startX,//开始X坐标
-      startY = that.data.startY,//开始Y坐标
-      touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
-      touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
-      //获取滑动角度
-      angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
-    that.data.talkListOver.forEach(function (v, i) {
-      v.isTouchMove = false
-      //滑动超过30度角 return
-      if (Math.abs(angle) > 30) return;
-      if (i == index) {
-        if (touchMoveX > startX) //右滑
-          v.isTouchMove = false
-        else //左滑
-          v.isTouchMove = true
-      };
-    });
+        index = e.currentTarget.dataset.index,//当前索引
+        angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY }),
+        startX = that.data.startX,//开始X坐标
+        startY = that.data.startY,//开始Y坐标
+        touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
+        touchMoveY = e.changedTouches[0].clientY;//滑动变化坐标
+
+    var isTouchMove = [];
+
+    if (touchMoveX > startX){
+      isTouchMove[index] = false;
+    }
+
+    if (touchMoveX < startX) {
+      isTouchMove[index] = true;
+    }
     //更新数据
     that.setData({
-      talkListOver: that.data.talkListOver,
-    })
-  },
-  //滑动事件处理
-  touchmoves: function (e) {
-    var that = this,
-      indexs = e.currentTarget.dataset.indexs,//当前索引
-      startX = that.data.startX,//开始X坐标
-      startY = that.data.startY,//开始Y坐标
-      touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
-      touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
-      //获取滑动角度
-      angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
-    that.data.talkListWait.forEach(function (v, i) {
-      v.isTouchMove = false
-      //滑动超过30度角 return
-      if (Math.abs(angle) > 30) return;
-      if (i == indexs) {
-        if (touchMoveX > startX) //右滑
-          v.isTouchMove = false
-        else //左滑
-          v.isTouchMove = true
-      };
+      isTouchMove: isTouchMove
     });
-    //更新数据
-    that.setData({
-      talkListOver: that.data.talkListOver,
-      talkListWait: that.data.talkListWait,
-    })
   },
   /**
    * 计算滑动角度
@@ -174,17 +127,18 @@ Page({
   },
   //删除事件
   del: function (e) {
-    this.data.talkListOver.splice(e.currentTarget.dataset.index, 1);
-    this.setData({
-      talkListOver: this.data.talkListOver,
-    })
-  },
-  //删除事件
-  dels: function (e) {
-    this.data.talkListWait.splice(e.currentTarget.dataset.indexs, 1);
-    this.setData({
-      talkListWait: this.data.talkListWait,
-    })
+    var index = e.currentTarget.dataset.index;
+    var This = this;
+    app.post(
+      config.service.Customer_Service_UserDelete, {
+        'token': wx.getStorageSync('token'),
+        'session_keys': index
+      }, function (res) {
+        if (res.data.retData) {
+          app.point('删除成功', 'success', 1000);
+        }
+      }
+    );
   },
   costomTalk: function (res) {
     if(post_type){

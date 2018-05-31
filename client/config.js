@@ -26,7 +26,7 @@ var config = {
       // 修改用户接入状态
       Customer_Service_UserUpdate: `${host}/api/Customer_Service/Information_push/Customer_Service_UserUpdate`,
       // 删除用户信息
-      Customer_Service_UserUpdate: `${host}/api/Customer_Service/Information_push/Customer_Service_UserUpdate`,
+      Customer_Service_UserDelete: `${host}/api/Customer_Service/Information_push/Customer_Service_UserDelete`,
     }
 
 };

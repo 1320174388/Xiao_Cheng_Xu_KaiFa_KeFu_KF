@@ -64,7 +64,9 @@ class Information_push extends CI_Controller
 
             $postObj->session_diff = 1;
 
-            $this->Service_Service->set_Service_Service($session_keys,$postObj);
+            if(($postObj->MsgType == 'text')||($postObj->MsgType == 'image')||($postObj->MsgType == 'file')){
+                $this->Service_Service->set_Service_Service($session_keys,$postObj);
+            }
 
             $XmlTpl = "<xml><ToUserName><![CDATA[".$postObj->FromUserName."]]></ToUserName><FromUserName><![CDATA[".$postObj->ToUserName."]]></FromUserName><CreateTime>".time()."</CreateTime><MsgType><![CDATA[transfer_customer_service]]></MsgType></xml>";
 

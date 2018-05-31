@@ -72,8 +72,7 @@ class Service_User extends CI_Model
 
     public function get_Service_UserDelete($session_keys)
     {
-        $this->db->where('session_keys', $session_keys);
-        return $this->db->delete($this->tableName);
+        return $this->db->delete($this->tableName,['session_keys'=>$session_keys]);
     }
 
     protected function token() {

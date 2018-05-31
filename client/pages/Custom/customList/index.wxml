@@ -6,7 +6,7 @@
   <!--已经接入-->
   <scroll-view scroll-y="true" class="container" hidden="{{currentTab!==0}}">
     <block wx:for="{{talkListOver}}" wx:key="">
-      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-session_keys="{{item.session_keys}}" data-user_avatar="{{item.user_avatar}}" bindtap='costomTalk'> 
+      <view class="touch-item {{isTouchMove[index] ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-session_keys="{{item.session_keys}}" data-user_avatar="{{item.user_avatar}}" bindtap='costomTalk'> 
         <view class="content-row content">
           <view style="flex:0.3" class='overImg'>
             <image wx:if="{{item.user_avatar}}" src='{{item.user_avatar}}' class='headImg'></image>
@@ -36,16 +36,15 @@
             </view> 
           </view>
         </view> 
-        <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+        <view class="del" catchtap="del" data-index="{{item.session_keys}}">删除</view>
         </view>
     </block>
   </scroll-view>
 
-
   <!--等待接入-->
   <scroll-view scroll-y="true" class="container" hidden="{{currentTab!==1}}">
     <block wx:for="{{talkListWait}}" wx:key="{{index}}">
-      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-indexs="{{index}}" bindtouchstart="touchstarts" bindtouchmove="touchmoves" data-session_keys="{{item.session_keys}}" data-user_avatar="{{item.user_avatar}}" bindtap='costomTalk'>
+      <view class="touch-item {{isTouchMove[index] ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-session_keys="{{item.session_keys}}" data-user_avatar="{{item.user_avatar}}" bindtap='costomTalk'>
         <view class="content-row content">
           <view style="flex:0.3" class='overImg'>
             <image wx:if="{{item.user_avatar}}" src='{{item.user_avatar}}' class='headImg'></image>
@@ -75,7 +74,7 @@
             </view>
           </view>
         </view> 
-        <view class="del" catchtap="dels" data-indexs="{{index}}">删除</view>
+        <view class="del" catchtap="del" data-index="{{item.session_keys}}">删除</view>
       </view>
     </block>
   </scroll-view>
