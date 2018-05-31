@@ -62,13 +62,18 @@ Page({
               if (data[i].session_status == 1) {
                 talkListOver[talkListOver.length] = data[i];
               }
-              if (data[i].session_status == 2) {
+              if (data[i].session_status == 0) {
                 talkListWait[talkListWait.length] = data[i];
               }
             }
             if (JSON.stringify(This.data.talkListOver) != JSON.stringify(talkListOver)) {
               This.setData({
                 talkListOver: talkListOver,
+              });
+            }
+            if (JSON.stringify(This.data.talkListWait) != JSON.stringify(talkListWait)) {
+              console.log(talkListWait, This.data.talkListWait)
+              This.setData({
                 talkListWait: talkListWait
               });
             }
