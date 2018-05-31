@@ -105,7 +105,9 @@ class Information_push extends CI_Controller
 
         $this->Service_Service->set_Service_Service($session_keys,$postObj);
 
-        $this->Information_pushs($this->Config_openId,$postObj->MsgType,$postObj->Content);
+        $session_id = $this->Service_User->get_Service_User_openid($session_keys);
+
+        $this->Information_pushs($session_id,$postObj->MsgType,$postObj->Content);
 
         return return_response( 0, '发送成功', true );
     }

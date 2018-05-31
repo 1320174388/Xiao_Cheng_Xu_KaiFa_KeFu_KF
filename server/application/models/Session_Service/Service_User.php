@@ -43,8 +43,14 @@ class Service_User extends CI_Model
 
     public function get_Service_User($openid)
     {
-        $res = $this->CI->db->get_where($this->tableName,['open_id'=>$openid]);
+        $res = $this->db->get_where($this->tableName,['open_id'=>$openid]);
         return $res->result()[0];
+    }
+
+    public function get_Service_User_openid($session_keys)
+    {
+        $res = $this->db->get_where($this->tableName,['session_keys'=>$session_keys]);
+        return $res->result()[0]->session_id;
     }
 
     public function get_Service_UserList()
