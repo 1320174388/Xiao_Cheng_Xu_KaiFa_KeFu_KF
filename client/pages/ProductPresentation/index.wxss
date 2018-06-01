@@ -12,7 +12,7 @@
 /* 介绍标题 */
 .context-title{
   font-family: PingFangSC;
-  font-size: 48rpx;
+  font-size:46rpx;
   font-weight: 600;
   color: #8b572a;
   line-height: 67rpx;
@@ -40,7 +40,7 @@
 .context-present{
   width: 691rpx;
   font-family: PingFangSC;
-  font-size: 34rpx;
+  font-size: 35rpx;
   line-height: 1.5;
   color: #333333;
   margin-left: 30rpx;
@@ -58,7 +58,7 @@
   font-size: 40rpx;
   font-weight: 600;
   line-height: 0.65;
-  color: #333333;
+  color: #8b572a;
   margin-top:50rpx;
   text-indent:0.7em;
   margin-bottom:20rpx;
@@ -104,7 +104,7 @@
   width: 720rpx;
   height: 67rpx;
   font-family: PingFangSC;
-  font-size: 48rpx;
+  font-size: 46rpx;
   font-weight: 600;
   color: #8b572a;
   margin-top: 50rpx;

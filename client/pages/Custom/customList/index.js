@@ -11,7 +11,7 @@ Page({
   data: {
     config_imgUrl: config.imgUrl,
     isTouchMove:[],
-    navbar: ['已经接入', '等待接入'],
+    navbar: ['已经接入(0)', '等待接入(0)'],
     currentTab: 0,
     talkListOver: [],
     talkListWait: [],

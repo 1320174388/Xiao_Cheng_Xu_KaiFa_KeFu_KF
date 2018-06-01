@@ -21,8 +21,8 @@
   margin: 62rpx auto 40rpx;
 }
 .content_title{
-  width: 238rpx;
-  font-size: 34rpx;
+  width:260rpx;
+  font-size: 36rpx;
   color: #8b572a;
   text-align: center;
   padding: 0 8rpx;

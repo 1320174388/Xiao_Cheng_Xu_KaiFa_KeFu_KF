@@ -1,8 +1,0 @@
-<!--pages/cheshi/cheshi.wxml-->
-<view bindtap='cheshifasong'>pages/cheshi/cheshi.wxml_测试发送信息</view>
-<view>-------------------------------------------</view>
-<view bindtap='cheshihuoqu'>pages/cheshi/cheshi.wxml_测试历史信息</view>
-<view>-------------------------------------------</view>
-<view bindtap='huoqunewdata'>pages/cheshi/cheshi.wxml_测试最新信息</view>
-<view>-------------------------------------------</view>
-<view bindtap='huoqushuju'>pages/cheshi/cheshi.wxml_测试最新数据</view>

@@ -2,7 +2,7 @@
   <view class="content-column">
     <!-- 介绍标题 -->
     <view style="flex:1" class='context-title'>
-      楠枫美林水漆木门介绍
+      楠枫美林水性漆木门介绍
     </view>
      <!-- 楠枫美林木门图片介绍 -->
     <view style="flex:1" class='context-imgtitle'>

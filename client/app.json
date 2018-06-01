@@ -4,7 +4,6 @@
     "pages/ProductPresentation/index",
     "pages/about/about",
     "pages/ProductPresentation/webView/webView",
-    "pages/cheshi/cheshi",
     "pages/Custom/customList/index",
     "pages/Custom/customTalk/index"
   ],

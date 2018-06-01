@@ -140,12 +140,8 @@ Page({
     });
   },
   blp:function(res){
-
     wx.previewImage({
-      
       urls: [config.imgUrl +'764844130884085437.jpg'] 
     })
-
   }
-  
 })

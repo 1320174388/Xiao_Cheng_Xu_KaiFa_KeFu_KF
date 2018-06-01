@@ -16,7 +16,7 @@
         <!--正文内容小标题背景线  -->
         <view class='bg_line'></view>
         <!--正文内容小标题  -->
-        <view class='content_title'>水漆木门系列</view>
+        <view class='content_title'>水性漆木门系列</view>
         <!--正文内容的图片容器  -->
         <view class='content_img_container'>
             <!--正文内容图片单个容器  -->
