@@ -15,14 +15,33 @@
   position: relative;
 }
 .bg_line{
-  width: 414rpx;
+  width: 440rpx;
   height: 2rpx;
   background: rgba(139, 87, 42, 0.4);
   margin: 62rpx auto 40rpx;
 }
 .content_title{
-  width:260rpx;
-  font-size: 36rpx;
+  width:300rpx;
+  font-size: 42rpx;
+  color: #8b572a;
+  text-align: center;
+  padding: 0 8rpx;
+  background: #f9f9f9;
+  position: absolute;
+  left: 50%;
+  top: 36rpx;
+  transform: translate(-50%);
+
+}
+.bg_lines{
+  width: 390rpx;
+  height: 2rpx;
+  background: rgba(139, 87, 42, 0.4);
+  margin: 62rpx auto 40rpx;
+}
+.content_titles{
+  width:220rpx;
+  font-size: 42rpx;
   color: #8b572a;
   text-align: center;
   padding: 0 8rpx;
@@ -51,12 +70,30 @@
 .kefu_rexian_dizhi{
   position:fixed;
   top: 475rpx;
-  right: 0;
-  width: 88rpx;
+  right: 18rpx;
+  width: 90rpx;
+}
+.newInfo{
+  border:1rpx solid red;
+  width:30rpx;
+  height:30rpx;
+  background-color:red;
+  border-radius:50rpx;
+  position:fixed;
+  left:10;
+  z-index:3;
+  right:15rpx;
+  top:470rpx;
+}
+.newTitle{
+  color:#fff;
+  font-size:20rpx;
+  position:relative;
+  top:-35rpx;
 }
 .btn{
-  width: 88rpx;
-  height: 88rpx;
+  width: 90rpx;
+  height: 90rpx;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.41);
   margin-bottom: 20rpx;

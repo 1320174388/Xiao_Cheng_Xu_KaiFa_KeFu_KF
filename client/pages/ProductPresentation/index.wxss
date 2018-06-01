@@ -55,10 +55,10 @@
   width: 680rpx;
   height: 26rpx;
   font-family: PingFangSC;
-  font-size: 40rpx;
+  font-size: 38rpx;
   font-weight: 600;
   line-height: 0.65;
-  color: #8b572a;
+  color: black;
   margin-top:50rpx;
   text-indent:0.7em;
   margin-bottom:20rpx;
@@ -81,7 +81,7 @@
   width: 600rpx;
   height: 42rpx;
   font-family: PingFangSC;
-  font-size: 40rpx;
+  font-size: 38rpx;
   font-weight: 600;
   line-height: 1.05;
   color: #333333;
@@ -125,8 +125,26 @@
 .kefu_rexian_dizhi{
   position:fixed;
   top: 475rpx;
-  right: 0;
+  right: 18rpx;
   width: 88rpx;
+}
+.newInfo{
+  border:1rpx solid red;
+  width:30rpx;
+  height:30rpx;
+  background-color:red;
+  border-radius:50rpx;
+  position:fixed;
+  left:10;
+  z-index:3;
+  right:15rpx;
+  top:470rpx;
+}
+.newTitle{
+  color:#fff;
+  font-size:20rpx;
+  position:relative;
+  top:-35rpx;
 }
 .btn{
   width: 88rpx;

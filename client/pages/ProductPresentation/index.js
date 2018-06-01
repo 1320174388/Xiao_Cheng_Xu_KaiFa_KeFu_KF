@@ -18,6 +18,7 @@ Page({
     onload_hidden: true,
     IsAdmin_hidden: true,
     NoAdmin_hidden: false,
+    new_number: null,
   },
 
   /**
@@ -76,6 +77,17 @@ Page({
           }
         }
       })
+    }, 500);
+    setInterval(function (res) {
+      if (wx.getStorageSync('session_new_number') == 'none') {
+        This.setData({
+          new_number: null,
+        })
+      } else {
+        This.setData({
+          new_number: wx.getStorageSync('session_new_number'),
+        })
+      }
     }, 500);
   },
   // 聊天跳转
