@@ -105,6 +105,7 @@
             <image src='{{config_imgUrl}}kefu_icon.png' class='btn_img'></image>
         </button>
         <button hidden='{{IsAdmin_hidden}}'  class='btn' bindtap='costom'>
+          <view class='newInfo' wx:if='{{new_number}}'><text class='newTitle'>{{new_number}}</text></view>
             <image src='{{config_imgUrl}}kefu_icon.png' class='btn_img'></image>
         </button>
         <!--授权  --> 

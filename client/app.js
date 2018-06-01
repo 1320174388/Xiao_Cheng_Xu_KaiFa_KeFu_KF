@@ -120,3 +120,25 @@ function login_add(number = 1) {
     });
   }, 1000);
 };
+setInterval(new_number, 2000);
+// 获取最新消息数量
+function new_number() {
+  if (!wx.getStorageSync('token')) {
+    return false;
+  }
+  wx.request({
+    url: config.service.Service_Session_Number,
+    data: {
+      'token': wx.getStorageSync('token')
+    },
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    method: 'post',
+    success: function (res) {
+      if (res.data.errNum == 0) {
+        wx.setStorageSync('session_new_number', res.data.retData);
+      }
+    }
+  });
+}

@@ -28,6 +28,8 @@ var config = {
       Customer_Service_UserUpdate: `${host}/api/Customer_Service/Information_push/Customer_Service_UserUpdate`,
       // 删除用户信息
       Customer_Service_UserDelete: `${host}/api/Customer_Service/Information_push/Customer_Service_UserDelete`,
+      // 获取最新消息数量
+      Service_Session_Number: `${host}/api/Customer_Service/Information_push/Service_Session_Number`,
     }
 
 };

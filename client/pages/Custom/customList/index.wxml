@@ -12,9 +12,9 @@
             <image wx:if="{{item.user_avatar}}" src='{{item.user_avatar}}' class='headImg'></image>
             <image wx:if="{{!item.user_avatar}}" src='{{config_imgUrl}}avatar_default.png' class='headImg'></image>
           </view>
-          <view style="flex:1">
+          <view style="flex:1;">
             <view class="content-column overTalk">
-              <view wx:if="{{item.user_name}}" style="flex:1">
+              <view wx:if="{{item.user_name}}" style="flex:1;">
                 {{item.user_name}}
               </view>
               <view wx:if="{{!item.user_name}}" style="flex:1">
