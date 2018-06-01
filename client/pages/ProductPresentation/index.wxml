@@ -113,7 +113,7 @@
         </button>
         <!--热线  -->
         <button class='btn' bindtap='phone'>
-            <image src='{{config_imgUrl}}/phone_icon.png' class='btn_img'></image>
+            <image src='{{config_imgUrl}}phone_icon.png' class='btn_img'></image>
         </button>
         <!--地址  -->
         <button class='btn' bindtap='address'>

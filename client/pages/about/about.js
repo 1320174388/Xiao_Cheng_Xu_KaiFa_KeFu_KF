@@ -133,7 +133,7 @@ Page({
     wx.openLocation({
       latitude: 39.834625,
       longitude: 116.450551,
-      name: '楠枫美林木业工厂店',
+      name: '城外城家居广场 - 楠枫美林',
       success: function (res) {
         console.log(res);
       }
