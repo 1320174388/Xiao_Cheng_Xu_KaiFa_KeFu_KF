@@ -117,6 +117,24 @@ class Information_push extends CI_Controller
     }
 
     /**
+     * 获取新消息数量
+     */
+    public function Service_Session_Number()
+    {
+        if(!is_system_admin()){
+            return return_response( 1, '你没有权限进行此操作', false );
+        }
+
+        $number = $this->Service_User->get_Service_UserNewNumber();
+
+        if($number){
+            return return_response( 0, '请求成功', $number );
+        }else{
+            return return_response( 0, '请求成功', 'none' );
+        }
+    }
+
+    /**
      * 获取历史聊天数据
      */
     public function Customer_Service_Response()

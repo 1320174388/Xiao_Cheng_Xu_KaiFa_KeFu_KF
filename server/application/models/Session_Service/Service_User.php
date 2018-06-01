@@ -67,6 +67,13 @@ class Service_User extends CI_Model
         return $res->result()[0]->$count;
     }
 
+    public function get_Service_UserNewNumber()
+    {
+        $res = $this->db->query("SELECT count(*) FROM {$this->tableName} WHERE session_sort = '1'");
+        $count = 'count(*)';
+        return $res->result()[0]->$count;
+    }
+
     public function get_Service_UserUpdate($session_keys)
     {
         $this->db->where('session_keys', $session_keys);
