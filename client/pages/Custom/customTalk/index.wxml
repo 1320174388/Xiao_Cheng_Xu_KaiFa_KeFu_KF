@@ -28,7 +28,9 @@
                 </view>
                 <!-- 头像图片 -->
                 <view style="flex:0.15;" class='right-img'>
-                  <open-data type="userAvatarUrl" class='rimg'></open-data>
+                  <view class='rimg'>
+                    <open-data type="userAvatarUrl"></open-data>
+                  </view>
                 </view>
               </view>
               <view wx:if="{{item.session_diff == 1?true:false}}" class="content-row">
