@@ -146,7 +146,7 @@ Page({
   },
   phone: function () {
     wx.makePhoneCall({
-      phoneNumber: '01087633035'
+      phoneNumber: '13801222752'
     })
   },
   address: function () {

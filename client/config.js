@@ -5,7 +5,7 @@
 // 此处主机域名修改成腾讯云解决方案分配的域名
 var host = 'https://950804099.xiaochengxukehu1.xyz';
 var wss = 'wss://zi8bp0gy.ws.qcloud.la';
-var imgUrl ='https://lg-0kbpp9os-1256415751.cos.ap-shanghai.myqcloud.com/';
+var imgUrl ='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/';
 var config = {
     imgUrl,
     // 下面的地址配合云端 Demo 工作
