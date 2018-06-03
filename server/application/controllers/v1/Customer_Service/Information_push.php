@@ -46,7 +46,6 @@ class Information_push extends CI_Controller
      */
     public function Customer_Service_Interface()
     {
-
         $postStr = file_get_contents("php://input");
 
         if (!empty($postStr)){

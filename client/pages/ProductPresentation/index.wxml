@@ -83,7 +83,7 @@
       关于水性漆木门了解更多：
     </view>
     <!-- 网址 -->
-    <view style="flex:1" class='mpweixinqq' bindtap='web_jump'>
+    <view style="flex:1" class='mpweixinqq'>
         https://mp.weixin.qq.com/s/jV7qFtajkm\n6llfbSdBUX0A
     </view> 
     

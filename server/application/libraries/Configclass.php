@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Configclass {
 
     // AppID(小程序ID)
-    public $wxAppID = 'wxccc5a444059f1b68';
+    public $wxAppID = 'wx3a28f21a2448be0c';
 
     // AppSecret(小程序密钥) 
-    public $wxAPPSecret = '10ea8042bb37f632aee713775f77587f';
+    public $wxAPPSecret = 'd7c173988bb49514923b9e837f49baff';
 
     // 微信客服配置信息
-    public $wssUrl = 'wss://juvr1ujg.ws.qcloud.la';
+    public $wssUrl = 'wss://zi8bp0gy.ws.qcloud.la';
     public $wxServiceToken = '32ac0e0f409a679da4af7fc26b50c960';
     public $EncodingAESKey = 'KuavM93OoSVLnE6Ga74AWK1Q0QBB78cTTAYK3SxjCGo';
 
