@@ -211,5 +211,11 @@ Page({
       urls: img_url_arr
     })
 
+  },
+  // 地老天荒logo和热线
+  phone_dlth: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
   }
 })

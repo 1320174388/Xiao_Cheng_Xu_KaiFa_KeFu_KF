@@ -3,6 +3,7 @@
   background: #f9f9f9;
   padding-bottom: 17rpx;
 }
+/* 轮播图容器 */
 .banner_container{
   width: 100%;
   height: 375rpx;
@@ -14,6 +15,7 @@
 .content{
   position: relative;
 }
+
 .bg_line{
   width: 440rpx;
   height: 2rpx;
@@ -33,6 +35,7 @@
   transform: translate(-50%);
 
 }
+
 .bg_lines{
   width: 390rpx;
   height: 2rpx;
@@ -67,6 +70,19 @@
 .con_img{
   width: 100%;
 }
+/*地老天荒售后电话  */
+.dlth{
+  width: 100%;
+  text-align: center;
+  color: #ccc;
+  font-size: 30rpx;
+  padding: 10rpx 0 20rpx 0;
+}
+.dlth_logo{
+  width: 400rpx;
+  margin-bottom: 10rpx;
+}
+/*客服热线地址  */
 .kefu_rexian_dizhi{
   position:fixed;
   top: 475rpx;
