@@ -155,5 +155,11 @@ Page({
     wx.previewImage({
       urls: [config.imgUrl +'764844130884085437.jpg'] 
     })
+  },
+  // 地老天荒logo和热线
+  phone_dlth: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
   }
 })
