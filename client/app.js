@@ -99,12 +99,12 @@ function login_add(number = 1) {
                             method: 'post',
                             success: function (res) {
                               if (res.data.errNum == 0) {
-                                wx.setStorageSync('IsAdmin', res.data.retMsg);
+                                wx.setStorageSync('IsAdmin', 'true');
+                              } else {
+                                wx.removeStorageSync('IsAdmin');
                               }
                             }
                           });
-                        } else {
-                          console.log(res.data);
                         }
                       }
                     });
