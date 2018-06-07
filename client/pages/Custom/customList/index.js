@@ -60,48 +60,51 @@ Page({
         }
       }
     );
-    setInter = setInterval(function () {
-      app.post(
-        config.service.Customer_Service_UserResponse, {
-          'token': wx.getStorageSync('token'),
-        }, function (res) {
-          if (res.data.errNum == 0) {
-            var data = res.data.retData.list,
-              data_number = res.data.retData.number,
-              data_newnumber = res.data.retData.newnumber;
+    setTimeout(function(res){
 
-            if (!data_number) {
-              data_number = 0;
-            }
-            if (!data_newnumber) {
-              data_newnumber = 0;
-            }
-            var talkListOver = [];
-            var talkListWait = [];
-            for (var i in data) {
-              if (data[i].session_status == 1) {
-                talkListOver[talkListOver.length] = data[i];
+      setInter = setInterval(function () {
+        app.post(
+          config.service.Customer_Service_UserResponse, {
+            'token': wx.getStorageSync('token'),
+          }, function (res) {
+            if (res.data.errNum == 0) {
+              var data = res.data.retData.list,
+                data_number = res.data.retData.number,
+                data_newnumber = res.data.retData.newnumber;
+
+              if (!data_number) {
+                data_number = 0;
               }
-              if (data[i].session_status == 0) {
-                talkListWait[talkListWait.length] = data[i];
+              if (!data_newnumber) {
+                data_newnumber = 0;
               }
-            }
-            if (JSON.stringify(This.data.talkListOver) != JSON.stringify(talkListOver)) {
-              This.setData({
-                talkListOver: talkListOver,
-                navbar: ['已经接入(' + data_number + ')', '等待接入(' + data_newnumber + ')'],
-              });
-            }
-            if (JSON.stringify(This.data.talkListWait) != JSON.stringify(talkListWait)) {
-              This.setData({
-                talkListWait: talkListWait,
-                navbar: ['已经接入(' + data_number + ')', '等待接入(' + data_newnumber + ')'],
-              });
+              var talkListOver = [];
+              var talkListWait = [];
+              for (var i in data) {
+                if (data[i].session_status == 1) {
+                  talkListOver[talkListOver.length] = data[i];
+                }
+                if (data[i].session_status == 0) {
+                  talkListWait[talkListWait.length] = data[i];
+                }
+              }
+              if (JSON.stringify(This.data.talkListOver) != JSON.stringify(talkListOver)) {
+                This.setData({
+                  talkListOver: talkListOver,
+                  navbar: ['已经接入(' + data_number + ')', '等待接入(' + data_newnumber + ')'],
+                });
+              }
+              if (JSON.stringify(This.data.talkListWait) != JSON.stringify(talkListWait)) {
+                This.setData({
+                  talkListWait: talkListWait,
+                  navbar: ['已经接入(' + data_number + ')', '等待接入(' + data_newnumber + ')'],
+                });
+              }
             }
           }
-        }
-      );
-    }, 5000);
+        );
+      }, 2000);
+    },3000);
   },
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {

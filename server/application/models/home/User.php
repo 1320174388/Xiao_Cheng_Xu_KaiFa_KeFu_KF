@@ -30,7 +30,15 @@ class User extends CI_Model {
                 return $user->result()[0]->id;
             }
         }else{
-            return $user->result()[0]->id;
+            $this->db->where('id', $user->result()[0]->id);
+            $res = $this->db->update('data_home_users', [
+                'user_name'   => $userName,
+                'user_avatar' => $avatarUrl
+            ]);
+            if($res){
+                $user = $this->db->get_where('data_home_users',['open_id'=>$openid]);
+                return $user->result()[0]->id;
+            }
         }
 
     }

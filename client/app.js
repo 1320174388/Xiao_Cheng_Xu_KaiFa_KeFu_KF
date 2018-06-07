@@ -48,7 +48,7 @@ App({
         number++;
       }
       setInterval(function () {
-        var userName = '未授权昵称';
+        var userName = '未授权用户';
         var avatarUrl = '';
         if (wx.getStorageSync('token')) {
           return false;
