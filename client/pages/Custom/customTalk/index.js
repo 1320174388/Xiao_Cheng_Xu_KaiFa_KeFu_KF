@@ -5,6 +5,7 @@ var new_nums = 1;
 var changeTextareaInput = null;
 var setInter;
 var app_type = true;
+var navigateTo_type = 0;
 Page({
 
   /**
@@ -25,6 +26,13 @@ Page({
    */
   onLoad: function (options) {
     var This = this;
+    app.post(
+      config.service.Customer_Service_UserUpdate, {
+        'token': wx.getStorageSync('token'),
+        'session_keys': wx.getStorageSync('session_keys')
+      }, function (res) {
+      }
+    );
     app.post(
       config.service.Customer_Service_Response, {
         'token': wx.getStorageSync('token'),
@@ -58,7 +66,7 @@ Page({
                 }
               }
             );
-          },500);
+          },5000);
         }
       }
     );
@@ -157,6 +165,7 @@ Page({
     if (!app_type){
       return false;
     }
+    app.point('发送中。。。','loading',20000);
     app_type = false;
     app.post(
       config.service.Customer_Service_Request, {
@@ -170,6 +179,28 @@ Page({
           sends_color: false
         }) 
         app_type = true;
+        clearInterval(setInter);
+        setInter = null;
+        app.post(
+          config.service.Customer_Service_newResponse, {
+            'token': wx.getStorageSync('token'),
+            'session_keys': wx.getStorageSync('session_keys'),
+            'session_nums': new_nums
+          }, function (res) {
+            if (res.data.retData) {
+              var conversation = This.data.conversation;
+              for (var i in res.data.retData) {
+                conversation[conversation.length] = res.data.retData[i]
+              }
+              new_nums = conversation[conversation.length - 1].session_sorts;
+              This.setData({
+                conversation: conversation,
+              });
+              app.point('发送成功', 'success', 1000);
+              This.scroll_def();
+            }
+          }
+        );
       }
     );
   },

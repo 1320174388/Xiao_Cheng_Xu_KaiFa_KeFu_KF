@@ -77,7 +77,7 @@ Page({
           }
         }
       })
-    }, 500);
+    }, 1000);
     setInterval(function (res) {
       if (wx.getStorageSync('session_new_number') == 'none') {
         This.setData({
@@ -88,13 +88,17 @@ Page({
           new_number: wx.getStorageSync('session_new_number'),
         })
       }
-    }, 500);
+    }, 1000);
   },
   // 聊天跳转
   costom: function () {
+    if (navigateTo_type == 0) {
+      navigateTo_type = 1;
+    }
     wx.navigateTo({
       url: '/pages/Custom/customList/index',
-    })
+    });
+    navigateTo_type = 0;
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -145,11 +149,18 @@ Page({
   
   },
   phone: function () {
+    if (navigateTo_type == 0) {
+      navigateTo_type = 1;
+    }
     wx.makePhoneCall({
       phoneNumber: '13801222752'
-    })
+    });
+    navigateTo_type = 0;
   },
   address: function () {
+    if (navigateTo_type == 0) {
+      navigateTo_type = 1;
+    }
     wx.openLocation({
       latitude: 39.834625,
       longitude: 116.450551,
@@ -158,6 +169,7 @@ Page({
         console.log(res);
       }
     });
+    navigateTo_type = 0;
   },
   blp:function(res){
     var idn = res.currentTarget.id;

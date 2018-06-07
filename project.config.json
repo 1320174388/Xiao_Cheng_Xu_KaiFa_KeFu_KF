@@ -6,6 +6,7 @@
 	},
 	"appid": "wx3a28f21a2448be0c",
 	"projectname": "Xiao_chang_Xu_KaiFa_KeFu_KF",
+	"compileType": "miniprogram",
 	"condition": {
 		"search": {
 			"current": -1,

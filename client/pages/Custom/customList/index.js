@@ -101,7 +101,7 @@ Page({
           }
         }
       );
-    }, 1000);
+    }, 5000);
   },
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {
@@ -171,21 +171,12 @@ Page({
     }else{
       var user_avatar = config.imgUrl +'avatar_default.png';
     }
-    app.post(
-      config.service.Customer_Service_UserUpdate, {
-        'token': wx.getStorageSync('token'),
-        'session_keys': session_keys
-      }, function (res) {
-        if (res.data.retData){
-          wx.setStorageSync('session_keys', session_keys);
-          wx.setStorageSync('user_avatar', user_avatar);
-          post_type = true;
-          wx.navigateTo({
-            url: '/pages/Custom/customTalk/index',
-          });
-        }
-      }
-    );
+    wx.setStorageSync('session_keys', session_keys);
+    wx.setStorageSync('user_avatar', user_avatar);
+    wx.navigateTo({
+      url: '/pages/Custom/customTalk/index',
+    });
+    post_type = true;
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

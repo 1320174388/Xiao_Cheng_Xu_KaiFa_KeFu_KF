@@ -55,7 +55,7 @@ class Information_push extends CI_Controller
 
             $openId = $postObj->FromUserName;
 
-            if($this->Config_openId != $openId){
+            if(($this->Config_openId != $openId)&&(($postObj->MsgType == 'text')||($postObj->MsgType == 'image')||($postObj->MsgType == 'file'))){
                 $Service_User = $this->Service_User->set_Service_User($openId,$postObj->Content);
             }
 
