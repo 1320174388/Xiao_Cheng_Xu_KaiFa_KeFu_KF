@@ -188,6 +188,7 @@ Page({
             'session_nums': new_nums
           }, function (res) {
             if (res.data.retData) {
+              app.point('发送成功', 'success', 1000);
               var conversation = This.data.conversation;
               for (var i in res.data.retData) {
                 conversation[conversation.length] = res.data.retData[i]
@@ -196,7 +197,6 @@ Page({
               This.setData({
                 conversation: conversation,
               });
-              app.point('发送成功', 'success', 1000);
               This.scroll_def();
             }
           }
