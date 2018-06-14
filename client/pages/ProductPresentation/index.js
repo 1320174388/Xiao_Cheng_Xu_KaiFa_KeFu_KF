@@ -1,5 +1,6 @@
 // pages/ProductPresentation/index.js
 var config = require('../../config.js');
+var navigateTo_type = 0;
 Page({
 
   /**

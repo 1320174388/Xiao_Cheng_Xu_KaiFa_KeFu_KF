@@ -35,7 +35,7 @@ var qcloud = require('./bower_components/qcloud-weapp-client-sdk/index.js');
 var qcloud = require('./bower_components/qcloud-weapp-client-sdk/index.js');
 
 // 设置登录地址
-qcloud.setLoginUrl('https://199447.qcloud.la/login');
+qcloud.setLoginUrl(userlogin);
 qcloud.login({
     success: function (userInfo) {
         console.log('登录成功', userInfo);
@@ -70,8 +70,8 @@ qcloud.request({
 如果调用 `request` 之前还没有登录，则请求不会带有会话。`request` 方法也支持 `login` 参数支持在请求之前自动登录。
 
 ```js
-// 使用 login 参数之前，需要设置登录地址
-qcloud.setLoginUrl('https://199447.qcloud.la/login');
+userlogin
+qcloud.setLoginUrl(userlogin);
 qcloud.request({
     login: true,
     url: 'http://199447.qcloud.la/user',
