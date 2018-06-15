@@ -165,7 +165,7 @@ Page({
     if (!app_type){
       return false;
     }
-    app.point('发送中。。。','loading',20000);
+    app.point('发送中。。。','loading',2000);
     app_type = false;
     app.post(
       config.service.Customer_Service_Request, {
