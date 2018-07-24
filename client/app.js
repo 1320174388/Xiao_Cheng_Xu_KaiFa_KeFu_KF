@@ -55,9 +55,9 @@ App({
                     header: {
                         'content-type': 'application/x-www-form-urlencoded'
                     },
-                    success: function (e) {
-                        wx.setStorageSync("token", e.data.retData.token);
-                        console.log(e.data);
+                    success: function (res) {
+                      wx.setStorageSync("token", res.data.retData.token);
+                      console.log(res.data);
                     }
                 })
             }
@@ -75,8 +75,8 @@ App({
         if (wx.getStorageSync('token')) {
           return false;
         }
-        // This.login_user();
-      }, 2000);
+        This.login_user();
+      }, 1000);
     },
 })
 
