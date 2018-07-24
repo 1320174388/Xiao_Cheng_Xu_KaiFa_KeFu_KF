@@ -80,6 +80,9 @@ Page({
                 "messageContent": content
             },function(res){
                 console.log(res.data);
+                wx.showToast({
+                    title: '提交成功',
+                })
             })
         }
     })  

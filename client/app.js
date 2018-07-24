@@ -57,7 +57,7 @@ App({
                     },
                     success: function (e) {
                         wx.setStorageSync("token", e.data.retData.token);
-                        console.log(e.data);
+                        console.log(e.data.retData);
                     }
                 })
             }
