@@ -85,13 +85,28 @@ Page({
   },
   // 聊天跳转
   costom: function () {
-    if (navigateTo_type == 0) {
-      navigateTo_type = 1;
-    }
-    wx.navigateTo({
-      url: '/pages/Custom/customList/index',
-    });
-    navigateTo_type = 0;
+      // 查看是否授权
+      wx.getSetting({
+          success: function (res) {
+              if (res.authSetting['scope.userInfo']) {
+                  getApp().post(config.service.host + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
+                      function (res) {
+                          if (!res.data.retData) {
+                              wx.navigateTo({
+                                  url: '../kefu/adminManage/adminManage',
+                              })
+                          } else {
+                              wx.navigateTo({
+                                  url: '../kefu/ask/ask',
+                              })
+                          }
+                      })
+              } else {
+                  return false;
+              }
+          }
+      })
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

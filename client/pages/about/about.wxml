@@ -65,17 +65,10 @@
       <!--客服热线地址  -->
     <view class='kefu_rexian_dizhi'>
     <!--客服  --> 
-        <button hidden='{{NoAdmin_hidden}}' open-type='contact' class='btn'>
+        <button class='btn' bindtap='costom'>
             <image src='{{config_imgUrl}}kefu_icon.png' class='btn_img'></image>
         </button>
-        <button hidden='{{IsAdmin_hidden}}'  class='btn'  bindtap='costom'>
-          <view class='newInfo' wx:if='{{new_number}}'><text class='newTitle'>{{new_number}}</text></view>
-            <image src='{{config_imgUrl}}kefu_icon.png' class='btn_img'></image>
-        </button>
-    <!--授权  --> 
-         <button hidden='{{onload_hidden}}' open-type='getUserInfo' class='btn'>
-        <image src='{{config_imgUrl}}accuont_icon.png' class='btn_img'></image>
-        </button>
+
         <!--热线  -->
         <button class='btn' bindtap='phone'>
             <image src='{{config_imgUrl}}phone_icon.png' class='btn_img'></image>

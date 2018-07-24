@@ -41,141 +41,45 @@ App({
         duration: time
       });
     },
+    // 用户登录
+    login_user:function()
+    {
+        setTimeout(function (res) {
+            wx.removeStorageSync('token');
+        }, 36000);
+        wx.login({
+            success: function (res) {
+                wx.request({
+                    url: config.service.cheshiUrl + res.code,
+                    method: "post",
+                    header: {
+                        'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (e) {
+                        wx.setStorageSync("token", e.data.retData.token);
+                        console.log(e.data);
+                    }
+                })
+            }
+        })
+    },
+    // 用户登录检测
     login_add:function (number = 1) {
       var This = this;
       if (number == 1) {
         wx.removeStorageSync('token');
         number++;
       }
+      This.login_user();
       setInterval(function () {
-        var userName = '未授权用户';
-        var avatarUrl = '';
         if (wx.getStorageSync('token')) {
           return false;
         }
-        setTimeout(function (res) {
-          wx.removeStorageSync('token');
-        }, 36000);
-        wx.login({
-          success: function (res) {
-            if (res.code) {
-              var code = res.code;
-              // 查看是否授权
-              wx.getSetting({
-                success: function (res) {
-                  if (res.authSetting['scope.userInfo']) {
-                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-                    wx.getUserInfo({
-                      success: function (res) {
-                        userName = res.userInfo.nickName;
-                        avatarUrl = res.userInfo.avatarUrl;
-                        wx.request({
-                          url: config.service.cheshiUrl,
-                          data: {
-                            code: code,
-                            userName: userName,
-                            avatarUrl: avatarUrl
-                          },
-                          header: {
-                            'content-type': 'application/x-www-form-urlencoded'
-                          },
-                          method: 'post',
-                          success: function (res) {
-                            if (res.data.errNum == 0) {
-                              console.log(res.data);
-                              wx.setStorageSync('token', res.data.retData.token);
-                              wx.request({
-                                url: config.service.IsAdmin,
-                                data: {
-                                  'token': wx.getStorageSync('token')
-                                },
-                                header: {
-                                  'content-type': 'application/x-www-form-urlencoded'
-                                },
-                                method: 'post',
-                                success: function (res) {
-                                  if (res.data.errNum == 0) {
-                                    wx.setStorageSync('IsAdmin', 'true');
-                                  } else {
-                                    wx.removeStorageSync('IsAdmin');
-                                  }
-                                }
-                              });
-                            }
-                          }
-                        });
-                      }
-                    })
-                  } else {
-                    wx.request({
-                      url: config.service.cheshiUrl,
-                      data: {
-                        code: code,
-                        userName: userName,
-                        avatarUrl: avatarUrl
-                      },
-                      header: {
-                        'content-type': 'application/x-www-form-urlencoded'
-                      },
-                      method: 'post',
-                      success: function (res) {
-                        if (res.data.errNum == 0) {
-                          console.log(res.data);
-                          wx.setStorageSync('token', res.data.retData.token);
-                          wx.request({
-                            url: config.service.IsAdmin,
-                            data: {
-                              'token': wx.getStorageSync('token')
-                            },
-                            header: {
-                              'content-type': 'application/x-www-form-urlencoded'
-                            },
-                            method: 'post',
-                            success: function (res) {
-                              if (res.data.errNum == 0) {
-                                wx.setStorageSync('IsAdmin', 'true');
-                              } else {
-                                wx.removeStorageSync('IsAdmin');
-                              }
-                            }
-                          });
-                        }
-                      }
-                    });
-                  }
-                }
-              })
-            } else {
-              console.log('登录失败' + res.errMsg);
-            };
-          }
-        });
-      }, 1000);
+        // This.login_user();
+      }, 2000);
     },
 })
 
 // 用户登录信息
 getApp().login_add();
 
-setInterval(new_number, 2000);
-// 获取最新消息数量
-function new_number() {
-  if (!wx.getStorageSync('token')) {
-    return false;
-  }
-  wx.request({
-    url: config.service.Service_Session_Number,
-    data: {
-      'token': wx.getStorageSync('token')
-    },
-    header: {
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    method: 'post',
-    success: function (res) {
-      if (res.data.errNum == 0) {
-        wx.setStorageSync('session_new_number', res.data.retData);
-      }
-    }
-  });
-}

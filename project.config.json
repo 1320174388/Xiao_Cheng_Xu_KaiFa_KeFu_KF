@@ -35,6 +35,12 @@
 					"name": "pages/cheshi/cheshi",
 					"pathName": "pages/Custom/customTalk/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "123",
+					"pathName": "pages/kefu/adminManage/adminManage",
+					"query": ""
 				}
 			]
 		}

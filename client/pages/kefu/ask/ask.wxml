@@ -1,0 +1,83 @@
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  talk_plugin_v1_ask.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/07/17 17:47
+     文件描述 :  客服模块发起提问wxml文件
+     历史记录 :  ----------------------- 
+-->
+<view class='wrap' id='wrap'>
+  <view wx:for="{{footBtnClick}}" wx:key="index">
+    <!--发起提问  -->
+    <view class='allQuestion-wrap' wx:if="{{item==1}}">
+        <form bindsubmit="ask">
+        <view class='time'>{{time}}</view>
+        <view class='question-wrap'>
+            <view class='question-content'>
+                <view class='title'>
+                    <text style='color:#000;'>标题: </text>
+                    <input type='text' placeholder='请输入问题' style='width:470rpx;float:right;margin-top:18rpx;' name="title"></input>
+                </view>
+                <view class='content'>
+                    <text style='color:#000;'>内容:</text>
+                    <textarea class='content-text' placeholder='请输入内容' maxlength='1000' name="text-content">
+                        
+                    </textarea> 
+                </view>
+            </view>
+            <button class='sub-btn' form-type='submit'>提交</button>
+        </view>
+        </form>
+    </view>
+    <!--历史提问  -->
+    <view class='askHistory' wx:if="{{item==2}}">
+        <view class='time'>{{time}}</view>
+        <view class='ask-wrap'>
+            <view style='text-align:center;'>我的提问</view>
+            <view class='question' wx:for="{{myAsk}}" wx:key="" wx:for-item="askItem">
+                <text class='question-text'>{{askItem}}</text>
+                <text class='more'>>></text>
+            </view>
+            
+        </view>
+    </view>
+    <!--客服信息  -->
+    <view class='askHistory' wx:if="{{item==0}}">
+        <view class='time'>{{time}}</view>
+        <view class='ask-wrap'>
+            <view class='question'>
+                <text class='question-text'>什么时候发货？</text>
+                <text class='more'>>></text>
+            </view>
+            <view class='question'>
+                <text class='question-text'>价格问题沟通修改？</text>
+                <text class='more'>>></text>
+            </view>
+            <view class='question'>
+                <text class='question-text'>什么时候有新版本？</text>
+                <text class='more'>>></text>
+            </view>
+            <view class='question'>
+                <text class='question-text'>关于物流查询问题？</text>
+                <text class='more'>>></text>
+            </view>
+        </view>
+    </view>
+    <!--对话框  -->
+    <view class='talk-box' wx:if="{{item==3}}">
+        <view class='time'>{{time}}</view>
+        <view class='others'>
+        <view class='head-name'>客服：</view>
+            <image class='headImg' src='{{talkImgOthers}}'></image>
+            <view class='box talk-wrap-other'>
+                您购买的微信定制服务正在潜心开发中，着急不得，为了您能更好的使用产品，您可以点击下面的链接查看相关注意事项。还有其他问题欢迎咨询
+            </view>
+        </view>
+    </view>
+  </view>  
+    <!--底部信息  -->
+    <view class='footer'>
+        <view class='footer-btn' wx:for="{{footBtnText}}"  wx:key="index" id="{{index}}" bindtap='askClick'>{{item}}</view>
+    </view>
+  
+</view>

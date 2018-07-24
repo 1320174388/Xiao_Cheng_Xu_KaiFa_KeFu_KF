@@ -5,7 +5,10 @@
     "pages/about/about",
     "pages/ProductPresentation/webView/webView",
     "pages/Custom/customList/index",
-    "pages/Custom/customTalk/index"
+    "pages/Custom/customTalk/index",
+    "pages/kefu/talk/talk",
+    "pages/kefu/ask/ask",
+    "pages/kefu/adminManage/adminManage"
   ],
   "window":{
     "backgroundColor":"#F6F6F6",
