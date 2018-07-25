@@ -60,14 +60,21 @@ Page({
 
   },
   // 聊天跳转
-  costom:function(){
+  costom:function(res){
+      var response = res;
       // 查看是否授权
+      
       wx.getSetting({
           success: function (res) {
               if (res.authSetting['scope.userInfo']) {
                   getApp().post(config.service.host + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
                       function (res) {
-                          if (!res.data.retData) {
+                          if (res.data.retData) {
+                              getApp().post(config.service.host + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
+                                  adminFormid: response.detail.formId
+                              }, function (res) {
+                                  console.log(res);
+                              });
                               wx.navigateTo({
                                   url: '../kefu/adminManage/adminManage',
                               })

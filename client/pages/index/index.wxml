@@ -50,10 +50,11 @@
     <!--客服热线地址  -->
     <view class='kefu_rexian_dizhi'>
     <!--客服  --> 
-        <button open-type='getUserInfo' class='btn' bindtap='costom'>
+        <form bindsubmit='costom' report-submit>
+        <button open-type='getUserInfo' class='btn' form-type='submit'>
             <image src='{{config_imgUrl}}kefu_icon.png' class='btn_img'></image>
         </button>
-
+        </form>
         <!--热线  -->
         <button class='btn' bindtap='phone'>
             <image src='{{config_imgUrl}}phone_icon.png' class='btn_img'></image>

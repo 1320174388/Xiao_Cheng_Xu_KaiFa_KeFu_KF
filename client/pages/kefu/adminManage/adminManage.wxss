@@ -12,6 +12,19 @@ page{
 view{
     box-sizing: border-box;
 }
+.formIdGet{
+    background: transparent;
+    width: 100%;
+    height: 140rpx;
+    color: #fff;
+    font-size: 24rpx;
+    padding: 0;
+    margin: 0;
+    line-height: 35rpx;
+}
+.formIdGet::after{
+    border: 0;
+}
 /* 头部日期信息 */
  .header{
     height: 88rpx;
@@ -170,4 +183,19 @@ view{
     background: #2d3958;
     color: #fff;
     bottom: 0;
+ }
+ /* 添加框 */
+ .title-inpt{
+     width:300rpx;
+     color: #ccc;
+     position: absolute;
+     top: 27rpx;
+     left: 100rpx;
+ }
+ /* 保存按钮 */
+ .submit{
+     font-size: 24rpx;
+     white-space: nowrap;
+     color: #fff;
+     padding-left: 23rpx;
  }

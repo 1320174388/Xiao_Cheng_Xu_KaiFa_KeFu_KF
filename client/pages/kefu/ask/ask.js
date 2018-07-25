@@ -1,6 +1,8 @@
 // pages/kefu/ask/ask.js
 var app = getApp();
 var config = require('../../../config.js');
+// 控制客服信息内对话框的数量
+var index = 0;
 Page({
 
   /**
@@ -11,11 +13,15 @@ Page({
       //  当前时间
       time:"", 
       //  底部按钮的文字 
-      footBtnText: ['客服信息', '发起提问','我的提问'],
+      footBtnText: ['客服信息', '其他问题','历史提问'],
       // 点击时增加的次数  
-      footBtnClick:['3'],
-      //  我的提问
+      footBtnClick:[],
+      //  历史提问
       myAsk:[] ,
+    //   客服信息
+      kefuInfo:[],
+    //   对话框内容
+      talkContent:[],
   },
 
   // 获取容器高度，使页面滚动到容器底部
@@ -58,9 +64,24 @@ Page({
                 
               }
           })
+      } else if (res.target.id==0){
+          wx.request({
+              url: config.service.host+'/v1/talk_module/replys_list/',
+              method:'GET',
+              success:function(res){
+                console.log(res.data);
+                  that.setData({
+                      kefuInfo: res.data.retMsg
+                  })
+              }
+          })
       }
     var footBtnClick = this.data.footBtnClick;
-    footBtnClick.push(res.target.id);
+    var footBtnClickObj = {
+        id: res.target.id,
+        index:'',
+    }
+    footBtnClick.push(footBtnClickObj);
     this.setData({
         footBtnClick: footBtnClick
     })
@@ -68,16 +89,18 @@ Page({
   },
 //   发起提问
   ask:function(res){
+      console.log(res.detail)
     var title = res.detail.value.title;
-    var content = res.detail.value.text-content;
+    var content = res.detail.value.textContent;
     wx.getUserInfo({
         success:function(e){
-            app.post(config.service.host +'/v1/talk_module/problem_value',{
+            app.post(config.service.host +'/v1/talk_module/info_post',{
                 "peopleIndex":wx.getStorageSync('token'),
+                "peopleFormid":res.detail.formId,
                 "peopleName":e.userInfo.nickName,
-                "sessionInfo": e.userInfo.gender,
+                "peopleSex": e.userInfo.gender,
                 "leavingTitle": title,
-                "messageContent": content
+                "messageCont": content
             },function(res){
                 console.log(res.data);
                 wx.showToast({
@@ -96,11 +119,37 @@ Page({
       var X = time.getDay();
       var H = time.getHours();
       var M = time.getMinutes();
+      if(M<10){
+          M = '0'+M;
+      }
       var week = ["日", "一", "二", "三", "四", "五", "六"];
       this.setData({
           time: "星期" + week[X] + "" + H + ":" + M
       })
   },
+//   客服信息点击
+    kefuReply:function(res){
+        var footBtnClick = this.data.footBtnClick;
+        var kefuInfo = this.data.kefuInfo;
+        console.log(res.target.id);
+        var talkContentArray = this.data.talkContent;
+        index++;
+        var footBtnClickObj = {
+            id:'3',
+            index: index
+        }
+        var talkContent = {
+            content: kefuInfo[res.target.id].session_content,
+            index: index
+        };
+        footBtnClick.push(footBtnClickObj);
+        talkContentArray.push(talkContent);
+        this.setData({
+            footBtnClick: footBtnClick,
+            talkContent: talkContentArray
+        });
+        this.pageScrollToBottom();
+    },
 
 
   /**

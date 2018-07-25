@@ -6,7 +6,7 @@
      文件描述 :  客服模块后台管理wxml文件
      历史记录 :  ----------------------- 
 -->
-<view>
+<view id='wrap'>
     <!-- 头部信息和日期  -->
     <view class='header'>
         <text style="font-size:30rpx;align-item:center;">今日</text>\t
@@ -14,14 +14,23 @@
     </view>
     <!--选项卡部分  -->
     <view class='id-card'>
-        <view class='ask card' bindtap='idCardAsk'>
+        <view class='ask card'>
+            <form bindsubmit='idCardAsk' report-submit>
+            <button class='formIdGet' form-type='submit'>
             <image class='card-icon' src='../../../icon/icon-ask-pressed.svg' style='opacity:{{idCardColorAsk}};'></image>
             <view style='opacity:{{idCardColorAsk}};'>用户提问</view>
+            </button>
+            </form>
         </view>
-        <view class='reply card' bindtap='idCardReply'>
+        <view class='reply card'>
+        <form  bindsubmit='idCardReply' report-submit>
+        <button class='formIdGet' form-type='submit'>
             <image class='card-icon' src='../../../icon/icon-reply-pressed.svg' style='opacity:{{idCardColorReply}};'></image>
             <view style='opacity:{{idCardColorReply}};'>自动回复</view>
+        </button>
+        </form>
         </view>
+        
     </view>
     <!--用户提问的用户信息  -->
     <view class='content-wrap' wx:if="{{idCardShow==0}}">
@@ -92,23 +101,75 @@
     </view>
     <!-- 自动回复 -->
     <view class='content-wrap' wx:if="{{idCardShow==3}}">
-        <view class="ask-reply">
+        <view class="ask-reply" wx:for="{{askList}}" wx:key="index">
+        
             <view class='ask-title'>
-                <text>问题: <text>工期问题</text></text>
+                <text>问题: <text>{{item.session_name}}</text></text>
                 <view class='ask-operation'>
-                    <view class='ask-btn'>删除</view>
-                    <view class='ask-btn'>编辑</view>
+                    <form bindsubmit='replyRemove' report-submit>
+                    <button class='ask-btn submit' id='{{index}}' form-type='submit' style='background:#2d3958;'>删除</button>
+                    </form>
+                    <form bindsubmit='replyEdit' report-submit>
+                    <button class='ask-btn submit' id='{{index}}' form-type='submit'>编辑</button>
+                    </form>
                 </view>
             </view>
             <view class='ask-content'>
                 <text>内容:</text>
-                <view style='margin:30rpx 0;'>您购买的微信定制服务正在潜心开发中，着急不得，为了您能更好的使用产品，您可以点击下面的链接查看相关注意事项。还有其他问题欢迎咨询</view>
+                <scroll-view style='margin:30rpx 0;word-wrap:break-word;height:200rpx;' scroll-y>{{item.session_content}}</scroll-view>
             </view>
             <view class='foot-time'>
                 2017年3月23日 10:00
             </view>
+            
         </view>
         
+        
     </view>
-    <button wx:if="{{idCardShow==3}}" class='reply-add'>添加</button>
+    <!-- 添加自动回复 -->
+    <view class='content-wrap' wx:if="{{addBoolear}}">
+        <form bindsubmit='addAskUpload'  report-submit>
+        <view class="ask-reply">
+            <view class='ask-title'>
+                <text>问题: </text>
+                <input class='title-inpt' placeholder='请输入问题' placeholder-style='color:#ccc;' name="titleInpt"></input>
+                <view class='ask-operation'>
+                    <button class='ask-btn submit' form-type='submit'>保存</button>
+                </view>
+            </view>
+            <view class='ask-content'>
+                <text>内容:</text>
+                <textarea style='margin:30rpx 0;color:#ccc;' placeholder='请输入内容' maxlength='1000' placeholder-style='color:#ccc;' name="askContent"></textarea>
+            </view>
+            <view class='foot-time'>
+                {{asktime}}
+            </view>
+        </view>
+        </form>
+    </view>
+    <!-- 编辑自动回复 -->
+    <view class='content-wrap' wx:if="{{editBoolear}}">
+        <form bindsubmit='replyEditUp' report-submit>
+        <view class="ask-reply">
+            <view class='ask-title'>
+                <text>问题: </text>
+                <input class='title-inpt' placeholder='请输入问题' placeholder-style='color:#ccc;' name="titleInpt" value='{{editShowTitle}}'></input>
+                <view class='ask-operation'>
+                    <button class='ask-btn submit' form-type='submit'>保存</button>
+                </view>
+            </view>
+            <view class='ask-content'>
+                <text>内容:</text>
+                <textarea style='margin:30rpx 0;color:#ccc;' placeholder='请输入内容' maxlength='1000' placeholder-style='color:#ccc;' name="askContent" value='{{editShowContent}}'></textarea>
+            </view>
+            <view class='foot-time'>
+                {{asktime}}
+            </view>
+        </view>
+        </form>
+    </view>
+    <view wx:if="{{idCardShow==3}}" style='height:120rpx;'></view>
+    <form bindsubmit='addAsk' report-submit>
+    <button wx:if="{{idCardShow==3}}" class='reply-add' form-type='submit'>添加</button>
+    </form>
 </view>

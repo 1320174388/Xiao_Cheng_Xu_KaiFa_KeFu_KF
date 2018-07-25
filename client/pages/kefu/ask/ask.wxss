@@ -119,6 +119,7 @@
      font-size: 28rpx;
      color: #7c7c7c;
      margin-left: 130rpx;
+     word-wrap:break-word;
  }
   .talk-wrap-other::before{
     position: absolute;

@@ -44,9 +44,6 @@ App({
     // 用户登录
     login_user:function()
     {
-        setTimeout(function (res) {
-            wx.removeStorageSync('token');
-        }, 36000);
         wx.login({
             success: function (res) {
                 wx.request({
@@ -58,6 +55,7 @@ App({
                     success: function (e) {
                         wx.setStorageSync("token", e.data.retData.token);
                         console.log(e.data.retData);
+
                     }
                 })
             }
@@ -71,12 +69,6 @@ App({
         number++;
       }
       This.login_user();
-      setInterval(function () {
-        if (wx.getStorageSync('token')) {
-          return false;
-        }
-        // This.login_user();
-      }, 2000);
     },
 })
 
