@@ -53,10 +53,12 @@
  }
  .content-text{
      width: 577rpx;
+     height: 200rpx;
      background: #f8f8f8;
      padding: 25rpx 30rpx;
      margin-top: 16rpx;
      box-sizing: border-box;
+     word-wrap: break-word;
  }
  .sub-btn{
      height: 79rpx;

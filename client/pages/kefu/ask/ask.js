@@ -13,7 +13,7 @@ Page({
       //  当前时间
       time:"", 
       //  底部按钮的文字 
-      footBtnText: ['客服信息', '其他问题','历史提问'],
+      footBtnText: ['客服信息', '发起提问','我的提问'],
       // 点击时增加的次数  
       footBtnClick:[],
       //  历史提问
@@ -22,6 +22,9 @@ Page({
       kefuInfo:[],
     //   对话框内容
       talkContent:[],
+    //   历史提问的单个内容
+      historyAskArr:'',
+      historyAskTitle:'',
   },
 
   // 获取容器高度，使页面滚动到容器底部
@@ -38,30 +41,29 @@ Page({
       var that = this;
       if (res.target.id==2){
           wx.request({
-              url: config.service.host +'/v1/talk_module/leaving_route',
+              url: config.service.host +'/v1/talk_module/info_get',
               method:'GET',
               data:{
                   'peopleIndex':wx.getStorageSync('token')
               },
               success:function(e){
-                var myAsk = that.data.myAsk;
                 
-                for(var i=0;i<e.data.retData.length;i++){
-                    myAsk.push(e.data.retData[i].leaving_title);
-                };
-                if (myAsk.length <4){
-                    that.setData({
-                        myAsk: myAsk
-                    })
-                }else{
-                    myAsk.splice(0, myAsk.length - 4);
-                    that.setData({
-                        myAsk: myAsk
-                    })
-                }
+                console.log(e.data.retMsg);
+                  if (e.data.retMsg==[]){
+                      wx.showToast({
+                          title: '还没有提问过任何问题',
+                          icon:'none',
+                          duration:1000
+                      })
+                  }else{
+                      var myAsk = e.data.retMsg;
+                      that.setData({
+                          myAsk: myAsk
+                      });
+                  }
                 
-                
-                
+                  
+               
               }
           })
       } else if (res.target.id==0){
@@ -89,9 +91,15 @@ Page({
   },
 //   发起提问
   ask:function(res){
-      console.log(res.detail)
+      var that = this;
+      var response = res;
     var title = res.detail.value.title;
     var content = res.detail.value.textContent;
+    wx.showToast({
+        title: '正在提交',
+        icon:'loading',
+        duration:36000
+    })
     wx.getUserInfo({
         success:function(e){
             app.post(config.service.host +'/v1/talk_module/info_post',{
@@ -102,13 +110,66 @@ Page({
                 "leavingTitle": title,
                 "messageCont": content
             },function(res){
-                console.log(res.data);
-                wx.showToast({
-                    title: '提交成功',
-                })
+                if(res.data.retData){
+                    var footBtnClick = that.data.footBtnClick;
+                    footBtnClick.splice(response.detail.target.id,1)
+                    that.setData({
+                        resetTitle: '',
+                        resetContent: '',
+                        footBtnClick: footBtnClick
+                    })
+                    wx.showToast({
+                        title: '提交成功',
+                        icon: 'success',
+                        duration: 1000
+                    })
+                }else{
+                    wx.showToast({
+                        title: res.data.retMsg,
+                        icon: 'none',
+                        duration: 1000
+                    })
+                }
+                
             })
         }
     })  
+  },
+//   继续提问
+  askContinue:function(res){
+      var that = this;
+      var response = res;
+      var historyAskArr = this.data.historyAskArr;
+      var leaving_index = historyAskArr[0].leaving_index;
+      var content = res.detail.value.textContent;
+      app.post(config.service.host + '/v1/talk_module/info_do_post', {
+          "peopleIndex": wx.getStorageSync('token'),
+          "peopleFormid": res.detail.formId,
+          "leavingIndex": leaving_index,
+          "messageCont": content
+      }, function (res) {
+          if (res.data.retData) {
+              var footBtnClick = that.data.footBtnClick;
+              footBtnClick.splice(response.detail.target.id,1);
+              that.setData({
+                  resetContent: '',
+                  footBtnClick: footBtnClick
+              })
+              wx.showToast({
+                  title: '提交成功',
+                  icon: 'success',
+                  duration: 1000
+              });
+              
+          } else {
+              wx.showToast({
+                  title: res.data.retMsg,
+                  icon: 'none',
+                  duration: 1000
+              })
+          }
+
+      })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -150,7 +211,36 @@ Page({
         });
         this.pageScrollToBottom();
     },
-
+    // 历史提问点击
+    historyAsk:function(res){
+        console.log(res.target.id);
+        var that = this;
+        var id = res.target.id;
+        var myAsk = this.data.myAsk;
+        var askObj = {
+            id:'4',
+            index:''
+        }
+        var footBtnClick = that.data.footBtnClick;
+        footBtnClick.push(askObj);
+        var leavingIndex = myAsk[res.target.id].leaving_index;
+        wx.request({
+            url: config.service.host + '/v1/talk_module/info_details',
+            method: 'GET',
+            data:{
+                leavingIndex: leavingIndex
+            },
+            success: function (res) {
+                console.log(res.data.retMsg);
+                that.setData({
+                    historyAskArr: res.data.retMsg,
+                    historyAskTitle: myAsk[id].leaving_title,
+                    footBtnClick: footBtnClick
+                });
+                that.pageScrollToBottom();
+            }
+        })
+    },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

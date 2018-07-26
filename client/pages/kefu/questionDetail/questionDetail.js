@@ -1,12 +1,27 @@
-// pages/kufu/talk/talk.js
+var config = require('../../../config.js');
+var app = getApp();
+// 获取时间日期
+var time = new Date();
+var Y = time.getFullYear();
+var M = time.getMonth() + 1;
+var D = time.getDate();
+var X = time.getDay();
+var H = time.getHours();
+var m = time.getMinutes();
+if (m < 10) {
+    m = '0' + m
+}
+var week = ["日", "一", "二", "三", "四", "五", "六"]
+var strTime = M + '月' + D + '日' + ' 星期' + week[X];
+var askTime = Y + '年' + M + '月' + D + '日 ' + H + ':' + m
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      talkImgOwn:"",
-      talkImgOthers:"",
+      //   顶部时间
+      time: strTime,
   },
 
   /**

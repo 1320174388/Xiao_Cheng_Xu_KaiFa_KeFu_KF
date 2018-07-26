@@ -20,9 +20,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    //   头像
-      talkImgOwn:"",
-      talkImgOthers:"",
     //   顶部时间
       time: strTime,
     //   提问时间
@@ -32,6 +29,7 @@ Page({
       idCardColorAsk: 1,
     //   顶部选项卡透明度
       idCardColorReply: 0.5,
+    //   用户信息列表
       userList:[],
     //   控制添加的显示隐藏
       addBoolear:false,
@@ -51,7 +49,26 @@ Page({
   onLoad: function () {
       var token = wx.getStorageSync('token');
       var that = this;
-      
+      wx.request({
+          url: config.service.host + '/v1/talk_module/user_route/' + wx.getStorageSync('token'),
+          method: 'GET',
+          success: function (res) {
+              var list = res.data.retMsg;
+              for(var i = 0;i<list.length;i++){
+                  if (list[i].people_sex==1){
+                      list[i].sex = '男'
+                  } else if (list[i].people_sex == 2){
+                      list[i].sex = '女'
+                  }else{
+                      list[i].sex = '未知'
+                  }
+              }
+              console.log(list);
+              that.setData({
+                  userList: list
+              })
+          }
+      })
   },
 
   /**
@@ -150,9 +167,15 @@ Page({
       })
   },
   //点击查看用户名下所有问题
-  askLook: function () {
-      this.setData({
-          idCardShow: 1
+  askLook: function (res) {
+      var id = res.currentTarget.id;
+      app.post(config.service.host + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
+          adminFormid: res.detail.formId
+      }, function (res) {
+          
+      });
+      wx.navigateTo({
+          url: '../question/question?id='+id,
       })
   },
   //点击查看问题详细内容
@@ -166,7 +189,7 @@ Page({
       app.post(config.service.host + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
           adminFormid: res.detail.formId
       }, function (res) {
-          console.log(res);
+          
       });
       this.setData({
           addBoolear:true,
