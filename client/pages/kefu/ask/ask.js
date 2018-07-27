@@ -192,7 +192,12 @@ Page({
     kefuReply:function(res){
         var footBtnClick = this.data.footBtnClick;
         var kefuInfo = this.data.kefuInfo;
-        console.log(res.target.id);
+        if (res.target.id==""){
+            var ind = res.currentTarget.id;
+        }else{
+            var ind = res.target.id;
+        }
+        
         var talkContentArray = this.data.talkContent;
         index++;
         var footBtnClickObj = {
@@ -200,7 +205,7 @@ Page({
             index: index
         }
         var talkContent = {
-            content: kefuInfo[res.target.id].session_content,
+            content: kefuInfo[ind].session_content,
             index: index
         };
         footBtnClick.push(footBtnClickObj);
@@ -213,9 +218,12 @@ Page({
     },
     // 历史提问点击
     historyAsk:function(res){
-        console.log(res.target.id);
         var that = this;
-        var id = res.target.id;
+        if (res.target.id == "") {
+            var id = res.currentTarget.id;
+        } else {
+            var id = res.target.id;
+        }
         var myAsk = this.data.myAsk;
         var askObj = {
             id:'4',
@@ -223,7 +231,7 @@ Page({
         }
         var footBtnClick = that.data.footBtnClick;
         footBtnClick.push(askObj);
-        var leavingIndex = myAsk[res.target.id].leaving_index;
+        var leavingIndex = myAsk[id].leaving_index;
         wx.request({
             url: config.service.host + '/v1/talk_module/info_details',
             method: 'GET',

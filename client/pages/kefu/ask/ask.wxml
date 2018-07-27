@@ -35,7 +35,7 @@
         <view class='time'>{{time}}</view>
         <view class='ask-wrap'>
             <view style='text-align:center;'>我的提问</view>
-            <view class='question' wx:for="{{myAsk}}" wx:key="" wx:for-index="askIndex" wx:for-item="askItem" bindtap='historyAsk' id='{{askIndex}}'>
+            <view class='question' wx:for="{{myAsk}}" wx:key="" wx:for-index="askIndex" wx:for-item="askItem" id='{{askIndex}}' catchtap='historyAsk'>
                 <text class='question-text'>{{askItem.leaving_title}}</text>
                 <text class='more'>>></text>
             </view>
@@ -79,7 +79,7 @@
     <view class='askHistory' wx:if="{{item.id==0&&item.index==''}}">
         <view class='time'>{{time}}</view>
         <view class='ask-wrap'>
-            <view class='question' wx:for="{{kefuInfo}}" wx:key="index" wx:for-item="kefuItem" id='{{index}}' bindtap='kefuReply'>
+            <view class='question' wx:for="{{kefuInfo}}" wx:key="" wx:for-item="kefuItem" wx:for-index="kefuInfoIndex" id='{{kefuInfoIndex}}' bindtap='kefuReply'>
                 <text class='question-text'>{{kefuItem.session_name}}</text>
                 <text class='more'>>></text>
             </view>
