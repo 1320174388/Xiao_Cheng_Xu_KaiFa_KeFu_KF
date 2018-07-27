@@ -22,23 +22,44 @@ Page({
   data: {
       //   顶部时间
       time: strTime,
+    //   问题列表
+      questionList:[],
   },
   // 问题详情
   askContentLook:function(res){
+    //   上传formid值
       app.post(config.service.host + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
           adminFormid: res.detail.formId
       }, function (res) {
 
       });
+    //   进入问题详情页
+      var questionList = this.data.questionList;
+      var index = questionList[res.currentTarget.id].leaving_index;
+      var cont = questionList[res.currentTarget.id];
+      console.log(cont);
       wx.navigateTo({
-          url: '../questionDetail/questionDetail',
+          url: '../questionDetail/questionDetail?index='+index,
       })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log(options);
+      var that = this;
+      wx.request({
+          url: config.service.host + '/v1/talk_module/info_get' + wx.getStorageSync('token'),
+          method: 'GET',
+          data:{
+              peopleIndex: options.index
+          },
+          success: function (res) {
+              var list = res.data.retMsg;
+              that.setData({
+                  questionList: list
+              })
+          }
+      })
   },
 
   /**

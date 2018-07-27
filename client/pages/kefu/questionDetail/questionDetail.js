@@ -13,7 +13,8 @@ if (m < 10) {
 }
 var week = ["日", "一", "二", "三", "四", "五", "六"]
 var strTime = M + '月' + D + '日' + ' 星期' + week[X];
-var askTime = Y + '年' + M + '月' + D + '日 ' + H + ':' + m
+var askTime = Y + '年' + M + '月' + D + '日 ' + H + ':' + m;
+var index;
 Page({
 
   /**
@@ -22,13 +23,83 @@ Page({
   data: {
       //   顶部时间
       time: strTime,
+    //   聊天信息
+      talkList:[],
+    //   文本框内信息
+      messageInpt:'',
+  },
+//   发送信息
+  send:function(res){
+      var that = this;
+      console.log(res);
+      //   上传formid值
+      app.post(config.service.host + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
+          adminFormid: res.detail.formId
+      }, function (res) {
+
+      });
+    //   发送消息
+      wx.showToast({
+          title: '发送中',
+          icon:'loading',
+          duration:10000
+      })
+      app.post(config.service.host + '/v1/talk_module/admin_reply/' + wx.getStorageSync('token'), {
+          leavingIndex: index,
+          messageCont: res.detail.value.message
+      }, function (res) {
+          if (res.data.retData){
+              wx.showToast({
+                  title: '发送成功',
+                  duration:1000,
+                  icon:'success'
+              });
+            //   清空输入框
+              that.setData({
+                  messageInpt:''
+              });
+            //   刷新信息页面内容
+              wx.request({
+                  url: config.service.host + '/v1/talk_module/info_details',
+                  method: 'GET',
+                  data: {
+                      leavingIndex: index
+                  },
+                  success: function (res) {
+                      that.setData({
+                          talkList: res.data.retMsg
+                      })
+                  }
+              });
+          }else{
+              wx.showToast({
+                  title: res.data.retMsg,
+                  duration: 1000,
+                  icon: 'none'
+              })
+          }
+      });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      var that = this;
+      index = options.index;
+      wx.request({
+          url: config.service.host + '/v1/talk_module/info_details',
+          method: 'GET',
+          data: {
+              leavingIndex: index
+          },
+          success: function (res) {
+              that.setData({
+                  talkList: res.data.retMsg
+              })
+          }
+      })
+
   },
 
   /**

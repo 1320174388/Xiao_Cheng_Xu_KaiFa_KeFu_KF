@@ -168,14 +168,15 @@ Page({
   },
   //点击查看用户名下所有问题
   askLook: function (res) {
-      var id = res.currentTarget.id;
+      var userList = this.data.userList;
+      var index = userList[res.currentTarget.id].people_index;
       app.post(config.service.host + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
           adminFormid: res.detail.formId
       }, function (res) {
           
       });
       wx.navigateTo({
-          url: '../question/question?id='+id,
+          url: '../question/question?index='+index,
       })
   },
   //点击查看问题详细内容

@@ -46,7 +46,7 @@
             </view>
             <view>
                 <text>性别： {{item.sex}}</text>
-                <view class='ask-status' wx:if="{{item.people_status==2}}">
+                <view class='ask-status ask-status-complete' wx:if="{{item.people_status==2}}">
                     已处理
                 </view>
                 <view class='ask-status' wx:if="{{item.people_status==1}}">

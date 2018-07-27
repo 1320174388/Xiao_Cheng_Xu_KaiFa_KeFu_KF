@@ -14,10 +14,10 @@
     </view>
     <!-- 用户提问的问题列表 -->
     <view class='content-wrap'>
-        <view class='user-ask'>
+        <view class='user-ask' wx:for='{{questionList}}' wx:key='index'>
             <view>
                 <text>标题： </text>
-                <text>工期问题</text>
+                <text>{{item.leaving_title}}</text>
                 <form bindsubmit='askContentLook' report-submit id='{{index}}'>
                 <button class='ask-look' form-type='submit'>
                     查看 >>
@@ -27,8 +27,11 @@
             </view>
             <view>
                 <text>处理人： <text>留恋</text></text>
-                <view class='ask-status ask-status'>
+                <view class='ask-status' wx:if="{{item.leaving_status==1}}">
                     待处理
+                </view>
+                <view class='ask-status ask-status-complete' wx:if="{{item.leaving_status==2}}">
+                    已处理
                 </view>
             </view>
             
