@@ -26,7 +26,7 @@
                 
             </view>
             <view>
-                <text>处理人： <text>留恋</text></text>
+                <text>处理人： <text>{{item.leaving_handle==null?'未处理':item.leaving_handle}}</text></text>
                 <view class='ask-status' wx:if="{{item.leaving_status==1}}">
                     待处理
                 </view>

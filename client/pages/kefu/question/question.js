@@ -13,7 +13,8 @@ if (m < 10) {
 }
 var week = ["日", "一", "二", "三", "四", "五", "六"]
 var strTime = M + '月' + D + '日' + ' 星期' + week[X];
-var askTime = Y + '年' + M + '月' + D + '日 ' + H + ':' + m
+var askTime = Y + '年' + M + '月' + D + '日 ' + H + ':' + m;
+var index;
 Page({
 
   /**
@@ -47,14 +48,16 @@ Page({
    */
   onLoad: function (options) {
       var that = this;
+      index = options.index;
       wx.request({
           url: config.service.host + '/v1/talk_module/info_get' + wx.getStorageSync('token'),
           method: 'GET',
           data:{
-              peopleIndex: options.index
+              peopleIndex: index
           },
           success: function (res) {
               var list = res.data.retMsg;
+              console.log(list);
               that.setData({
                   questionList: list
               })
@@ -73,7 +76,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+      var that = this;
+      wx.request({
+          url: config.service.host + '/v1/talk_module/info_get' + wx.getStorageSync('token'),
+          method: 'GET',
+          data: {
+              peopleIndex: index
+          },
+          success: function (res) {
+              var list = res.data.retMsg;
+              console.log(list);
+              that.setData({
+                  questionList: list
+              })
+          }
+      })
   },
 
   /**
