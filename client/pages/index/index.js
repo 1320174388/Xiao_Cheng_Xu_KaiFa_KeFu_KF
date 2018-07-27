@@ -69,7 +69,7 @@ Page({
               if (res.authSetting['scope.userInfo']) {
                   getApp().post(config.service.host + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
                       function (res) {
-                          if (!res.data.retData) {
+                          if (res.data.retData) {
                               getApp().post(config.service.host + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
                                   adminFormid: response.detail.formId
                               }, function (res) {
