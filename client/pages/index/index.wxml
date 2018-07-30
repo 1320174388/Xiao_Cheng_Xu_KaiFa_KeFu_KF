@@ -51,7 +51,7 @@
     <view class='kefu_rexian_dizhi'>
     <!--客服  --> 
         <form bindsubmit='costom' report-submit>
-        <button open-type='getUserInfo' class='btn' form-type='submit'>
+        <button class='btn' form-type='submit'>
             <image src='{{config_imgUrl}}kefu_icon.png' class='btn_img'></image>
         </button>
         </form>

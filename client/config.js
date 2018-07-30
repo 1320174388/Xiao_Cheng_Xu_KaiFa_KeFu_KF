@@ -3,7 +3,6 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-// var host = 'https://950804099.xiaochengxukehu1.xyz';
 var host = 'https://langxue2nanfengmeilin.dlaotianhuang.com';
 var imgUrl ='https://langxue2nanfengmeilin.dlaotianhuang.com/uploads/images/';
 var config = {

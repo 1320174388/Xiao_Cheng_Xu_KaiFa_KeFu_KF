@@ -91,7 +91,7 @@ Page({
               if (res.authSetting['scope.userInfo']) {
                   getApp().post(config.service.host + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
                       function (res) {
-                          if (!res.data.retData) {
+                          if (res.data.retData) {
                               wx.navigateTo({
                                   url: '../kefu/adminManage/adminManage',
                               })
