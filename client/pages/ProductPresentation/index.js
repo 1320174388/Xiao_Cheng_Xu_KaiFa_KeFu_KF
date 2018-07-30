@@ -22,7 +22,8 @@ Page({
     new_number: null,
   },
   // 聊天跳转
-  costom: function () {
+  costom: function (res) {
+      var response = res;
       // 查看是否授权
       wx.getSetting({
           success: function (res) {
@@ -30,6 +31,11 @@ Page({
                   getApp().post(config.service.host + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
                       function (res) {
                           if (res.data.retData) {
+                              getApp().post(config.service.host + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
+                                  adminFormid: response.detail.formId
+                              }, function (res) {
+                                  console.log(res);
+                              });
                               wx.navigateTo({
                                   url: '../kefu/adminManage/adminManage',
                               })
@@ -50,70 +56,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var This = this;
-    // 查看是否授权
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          This.setData({
-            onload_hidden: true
-          });
-          if (wx.getStorageSync('IsAdmin')) {
-            This.setData({
-              IsAdmin_hidden: false,
-              NoAdmin_hidden: true,
-            });
-          } else {
-            This.setData({
-              IsAdmin_hidden: true,
-              NoAdmin_hidden: false,
-            });
-          }
-        } else {
-          This.setData({
-            onload_hidden: false
-          });
-        }
-      }
-    });
-    setInterval(function (res) {
-      // 查看是否授权
-      wx.getSetting({
-        success: function (res) {
-          if (res.authSetting['scope.userInfo']) {
-            This.setData({
-              onload_hidden: true
-            });
-            if (wx.getStorageSync('IsAdmin')) {
-              This.setData({
-                IsAdmin_hidden: false,
-                NoAdmin_hidden: true,
-              });
-            } else {
-              This.setData({
-                IsAdmin_hidden: true,
-                NoAdmin_hidden: false,
-              });
-            }
-          } else {
-            This.setData({
-              onload_hidden: false
-            });
-          }
-        }
-      })
-    }, 1000);
-    setInterval(function (res) {
-      if (wx.getStorageSync('session_new_number') == 'none') {
-        This.setData({
-          new_number: null,
-        })
-      } else {
-        This.setData({
-          new_number: wx.getStorageSync('session_new_number'),
-        })
-      }
-    }, 1000);
+    
+    
   },
   
   /**

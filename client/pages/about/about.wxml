@@ -65,9 +65,11 @@
       <!--客服热线地址  -->
     <view class='kefu_rexian_dizhi'>
     <!--客服  --> 
-        <button class='btn' bindtap='costom'>
+        <form bindsubmit='costom' report-submit>
+        <button class='btn' form-type='submit'>
             <image src='{{config_imgUrl}}kefu_icon.png' class='btn_img'></image>
         </button>
+        </form>
 
         <!--热线  -->
         <button class='btn' bindtap='phone'>
