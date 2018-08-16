@@ -221,7 +221,7 @@ Page({
               that.idCardReply();
           }else{
               wx.showToast({
-                  title: '添加失败',
+                  title: e.data.retMsg,
                   icon: 'none',
                   duration: 1000
               })
